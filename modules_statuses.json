@@ -1,0 +1,8 @@
+{
+    "Settings": true,
+    "Users": true,
+    "Auth": true,
+    "Dashboard": true,
+    "Profile": true,
+    "Laporan": true
+}
