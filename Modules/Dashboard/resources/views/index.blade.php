@@ -132,8 +132,9 @@
                   REGULER
                 </div>
                 <div class="d-flex align-items-center ms-auto">
-                  <div class="w-50px text-end ps-2 fw-bold"><span data-animation="number" data-value="3.79">0</span>
+                  <div class="w-50px ps-2 fw-bold"><span data-animation="number" data-value="data-form-reguler">0</span>
                   </div>
+                  Camaba
                 </div>
               </div>
               <!-- END info-row -->
@@ -141,27 +142,38 @@
               <div class="d-flex mb-2">
                 <div class="d-flex align-items-center">
                   <i class="fa fa-circle text-warning fs-8px me-2"></i>
-                  Reached checkout
+                  RPL
                 </div>
                 <div class="d-flex align-items-center ms-auto">
-                  <div class="text-gray-500 small"><i class="fa fa-caret-up"></i> <span data-animation="number"
-                      data-value="11">0</span>%</div>
-                  <div class="w-50px text-end ps-2 fw-bold"><span data-animation="number" data-value="3.85">0.00</span>%
+                  <div class="w-50px ps-2 fw-bold"><span data-animation="number" data-value="data-form-rpl">0</span>
                   </div>
+                  Camaba
+                </div>
+              </div>
+              <!-- END info-row -->
+              <!-- BEGIN info-row -->
+              <div class="d-flex mb-2">
+                <div class="d-flex align-items-center">
+                  <i class="fa fa-circle text-lime fs-8px me-2"></i>
+                  KARYAWAN
+                </div>
+                <div class="d-flex align-items-center ms-auto">
+                  <div class="w-50px ps-2 fw-bold"><span data-animation="number" data-value="data-form-karyawan">0</span>
+                  </div>
+                  Camaba
                 </div>
               </div>
               <!-- END info-row -->
               <!-- BEGIN info-row -->
               <div class="d-flex">
                 <div class="d-flex align-items-center">
-                  <i class="fa fa-circle text-lime fs-8px me-2"></i>
-                  Sessions converted
+                  <i class="fa fa-circle text-teal fs-8px me-2"></i>
+                  KIPK
                 </div>
                 <div class="d-flex align-items-center ms-auto">
-                  <div class="text-gray-500 small"><i class="fa fa-caret-up"></i> <span data-animation="number"
-                      data-value="57">0</span>%</div>
-                  <div class="w-50px text-end ps-2 fw-bold"><span data-animation="number"
-                      data-value="2.19">0.00</span>%</div>
+                  <div class="w-50px ps-2 fw-bold"><span data-animation="number" data-value="data-form-kipk">0</span>
+                  </div>
+                  Camaba
                 </div>
               </div>
               <!-- END info-row -->
@@ -194,23 +206,16 @@
                 </div>
               </div>
               <!-- END store-session -->
-              <!-- BEGIN percentage -->
-              <div class="mb-4 text-gray-500 ">
-                <i class="fa fa-caret-up"></i> <span data-animation="number" data-value="9.5">0.00</span>% compare to
-                last week
-              </div>
-              <!-- END percentage -->
               <!-- BEGIN info-row -->
               <div class="d-flex mb-2">
                 <div class="d-flex align-items-center">
                   <i class="fa fa-circle text-teal fs-8px me-2"></i>
-                  Mobile
+                  REGULER
                 </div>
                 <div class="d-flex align-items-center ms-auto">
-                  <div class="text-gray-500 small"><i class="fa fa-caret-up"></i> <span data-animation="number"
-                      data-value="25.7">0.00</span>%</div>
-                  <div class="w-50px text-end ps-2 fw-bold"><span data-animation="number" data-value="53210">0</span>
+                  <div class="w-50px ps-2 fw-bold"><span data-animation="number" data-value="data-ukt-reguler">0</span>
                   </div>
+                  Camaba
                 </div>
               </div>
               <!-- END info-row -->
@@ -218,13 +223,26 @@
               <div class="d-flex mb-2">
                 <div class="d-flex align-items-center">
                   <i class="fa fa-circle text-blue fs-8px me-2"></i>
-                  Desktop
+                  RPL
                 </div>
                 <div class="d-flex align-items-center ms-auto">
-                  <div class="text-gray-500 small"><i class="fa fa-caret-up"></i> <span data-animation="number"
-                      data-value="16.0">0.00</span>%</div>
-                  <div class="w-50px text-end ps-2 fw-bold"><span data-animation="number" data-value="11959">0</span>
+                  <div class="w-50px ps-2 fw-bold"><span data-animation="number" data-value="data-ukt-rpl">0</span>
                   </div>
+                  Camaba
+                </div>
+              </div>
+              <!-- END info-row -->
+              <!-- BEGIN info-row -->
+              <div class="d-flex mb-2">
+                <div class="d-flex align-items-center">
+                  <i class="fa fa-circle text-cyan fs-8px me-2"></i>
+                  KARYAWAN
+                </div>
+                <div class="d-flex align-items-center ms-auto">
+                  <div class="w-50px ps-2 fw-bold"><span data-animation="number"
+                      data-value="data-ukt-karyawan">0</span>
+                  </div>
+                  Camaba
                 </div>
               </div>
               <!-- END info-row -->
@@ -232,13 +250,12 @@
               <div class="d-flex">
                 <div class="d-flex align-items-center">
                   <i class="fa fa-circle text-cyan fs-8px me-2"></i>
-                  Tablet
+                  KIPK
                 </div>
                 <div class="d-flex align-items-center ms-auto">
-                  <div class="text-gray-500 small"><i class="fa fa-caret-up"></i> <span data-animation="number"
-                      data-value="7.9">0.00</span>%</div>
-                  <div class="w-50px text-end ps-2 fw-bold"><span data-animation="number" data-value="5545">0</span>
+                  <div class="w-50px ps-2 fw-bold"><span data-animation="number" data-value="0">0</span>
                   </div>
+                  Camaba
                 </div>
               </div>
               <!-- END info-row -->
@@ -253,20 +270,18 @@
     </div>
     <!-- END col-6 -->
   </div>
-  <!-- END row -->
-  <!-- BEGIN row -->
   <div class="row">
     <!-- BEGIN col-8 -->
     <div class="col-xl-8 col-lg-6">
       <!-- BEGIN card -->
       <div class="card border-0 mb-3 bg-gray-800 text-white">
         <div class="card-body">
-          <div class="mb-3 text-gray-500 "><b>VISITORS ANALYTICS</b> <span class="ms-2"><i class="fa fa-info-circle"
+          <div class="mb-3 text-gray-500 "><b>CAMABA ANALYTICS</b> <span class="ms-2"><i class="fa fa-info-circle"
                 data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="Top products with units sold"
                 data-bs-placement="top"
                 data-bs-content="Products with the most individual units sold. Includes orders from all sales channels."
                 data-original-title="" title=""></i></span></div>
-          <div class="row">
+          {{-- <div class="row">
             <div class="col-xl-3 col-4">
               <h3 class="mb-1"><span data-animation="number" data-value="127.1">0</span>K</h3>
               <div>New Visitors</div>
@@ -285,13 +300,10 @@
               <div class="text-gray-500 small text-truncate"><i class="fa fa-caret-up"></i> <span
                   data-animation="number" data-value="0.323">0.00</span>% from previous 7 days</div>
             </div>
-          </div>
+          </div> --}}
         </div>
-        <div class="card-body p-0">
-          <div style="height: 269px">
-            <div id="visitors-line-chart" class="widget-chart-full-width" data-bs-theme="dark" style="height: 254px">
-            </div>
-          </div>
+        <div class="panel-body p-0 pe-10px ps-10px">
+          <div id="apex-column-chart"></div>
         </div>
       </div>
       <!-- END card -->
@@ -308,56 +320,13 @@
                 data-bs-title="Total sales" data-bs-placement="top"
                 data-bs-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i></span>
           </div>
-          <div id="visitors-map" class="mb-2" style="height: 200px"></div>
-          <div>
-            <div class="d-flex align-items-center text-white mb-2">
-              <div class="widget-img widget-img-xs rounded bg-dark me-2 w-40px"
-                style="background-image: url(../assets/img/flag/us.jpg)"></div>
-              <div class="d-flex w-100">
-                <div>United States</div>
-                <div class="ms-auto text-gray-500"><span data-animation="number" data-value="39.85">0.00</span>%</div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center text-white mb-2">
-              <div class="widget-img widget-img-xs rounded bg-dark me-2 w-40px"
-                style="background-image: url(../assets/img/flag/cn.jpg)"></div>
-              <div class="d-flex w-100">
-                <div>China</div>
-                <div class="ms-auto text-gray-500"><span data-animation="number" data-value="14.23">0.00</span>%</div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center text-white mb-2">
-              <div class="widget-img widget-img-xs rounded bg-dark me-2 w-40px"
-                style="background-image: url(../assets/img/flag/de.jpg)"></div>
-              <div class="d-flex w-100">
-                <div>Germany</div>
-                <div class="ms-auto text-gray-500"><span data-animation="number" data-value="12.83">0.00</span>%</div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center text-white mb-2">
-              <div class="widget-img widget-img-xs rounded bg-dark me-2 w-40px"
-                style="background-image: url(../assets/img/flag/fr.jpg)"></div>
-              <div class="d-flex w-100">
-                <div>France</div>
-                <div class="ms-auto text-gray-500"><span data-animation="number" data-value="11.14">0.00</span>%</div>
-              </div>
-            </div>
-            <div class="d-flex align-items-center text-white mb-0">
-              <div class="widget-img widget-img-xs rounded bg-dark me-2 w-40px"
-                style="background-image: url(../assets/img/flag/jp.jpg)"></div>
-              <div class="d-flex w-100">
-                <div>Japan</div>
-                <div class="ms-auto text-gray-500"><span data-animation="number" data-value="10.75">0.00</span>%</div>
-              </div>
-            </div>
-          </div>
+          <div id="apex-pie-chart" class="mb-2" style="height: 200px"></div>
         </div>
       </div>
       <!-- END card -->
     </div>
     <!-- END col-4 -->
   </div>
-  <!-- END row -->
 
   <!-- ================== BEGIN page-js ================== -->
   <script src="{{ asset('assets/plugins/d3/d3.min.js') }}"></script>
@@ -368,6 +337,11 @@
   <script src="{{ asset('assets/plugins/moment/min/moment.min.js') }}"></script>
   <script src="{{ asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
   <script src="{{ asset('assets/js/demo/dashboard-v3.js') }}"></script>
+
+  <script src="../assets/plugins/@highlightjs/cdn-assets/highlight.min.js"></script>
+  <script src="../assets/js/demo/render.highlight.js"></script>
+
+  <script src="../assets/plugins/apexcharts/dist/apexcharts.min.js"></script>
   <!-- ================== END page-js ================== -->
 
   <script>
@@ -379,6 +353,14 @@
     const pelayananOffline = document.querySelector('[data-value="pelayanan-offline"]');
     const totalBayarFormulir = document.querySelector('[data-value="total-bayar-formulir"]');
     const totalBayarUkt = document.querySelector('[data-value="total-bayar-ukt"]');
+    const formReguler = document.querySelector('[data-value="data-form-reguler"]');
+    const formRpl = document.querySelector('[data-value="data-form-rpl"]');
+    const formKaryawan = document.querySelector('[data-value="data-form-karyawan"]');
+    const formKipk = document.querySelector('[data-value="data-form-kipk"]');
+    const uktReguler = document.querySelector('[data-value="data-ukt-reguler"]');
+    const uktRpl = document.querySelector('[data-value="data-ukt-rpl"]');
+    const uktKaryawan = document.querySelector('[data-value="data-ukt-karyawan"]');
+    const updateNim = document.querySelector('[data-value="data-nim"]');
 
     function populateDropdown(dropdown, data, defaultOptionText = '') {
       dropdown.innerHTML = `<option value="">${defaultOptionText}</option>`;
@@ -444,7 +426,237 @@
       }
     }
 
+    function updateTotalFormReguler(data) {
+      const total = data.reduce((sum, item) => sum + (item.bayar_form_reguler || 0), 0);
+      if (formReguler) {
+        formReguler.setAttribute('data-value', total);
+        formReguler.textContent = total.toLocaleString();
+      }
+    }
 
+    function updateTotalFormRpl(data) {
+      const total = data.reduce((sum, item) => sum + (item.bayar_form_rpl || 0), 0);
+      if (formRpl) {
+        formRpl.setAttribute('data-value', total);
+        formRpl.textContent = total.toLocaleString();
+      }
+    }
+
+    function updateTotalFormKaryawan(data) {
+      const total = data.reduce((sum, item) => sum + (item.bayar_form_karyawan || 0), 0);
+      if (formKaryawan) {
+        formKaryawan.setAttribute('data-value', total);
+        formKaryawan.textContent = total.toLocaleString();
+      }
+    }
+
+    function updateTotalFormKipk(data) {
+      const total = data.reduce((sum, item) => sum + (item.bayar_form_kipk || 0), 0);
+      if (formKipk) {
+        formKipk.setAttribute('data-value', total);
+        formKipk.textContent = total.toLocaleString();
+      }
+    }
+
+    function updateTotalUktReguler(data) {
+      const total = data.reduce((sum, item) => sum + (item.bayar_ukt_reguler || 0), 0);
+      if (uktReguler) {
+        uktReguler.setAttribute('data-value', total);
+        uktReguler.textContent = total.toLocaleString();
+      }
+    }
+
+    function updateTotalUktRpl(data) {
+      const total = data.reduce((sum, item) => sum + (item.bayar_ukt_rpl || 0), 0);
+      if (uktRpl) {
+        uktRpl.setAttribute('data-value', total);
+        uktRpl.textContent = total.toLocaleString();
+      }
+    }
+
+    function updateTotalUktKaryawan(data) {
+      const total = data.reduce((sum, item) => sum + (item.bayar_ukt_karyawan || 0), 0);
+      if (uktKaryawan) {
+        uktKaryawan.setAttribute('data-value', total);
+        uktKaryawan.textContent = total.toLocaleString();
+      }
+    }
+
+    function updateTotalNim(data) {
+      const total = data.reduce((sum, item) => sum + (item.nim || 0), 0);
+      if (updateNim) {
+        updateNim.setAttribute('data-value', total);
+        updateNim.textContent = total.toLocaleString();
+      }
+    }
+
+    function updateChart(data, jenjang) {
+      const grouped = {};
+
+      data.forEach(item => {
+        const key = jenjang === 'SARJANA' ? item.fakultas : item.prodi;
+        if (!grouped[key]) {
+          grouped[key] = {
+            pendaftar: 0,
+            bayarFormulir: 0,
+            bayarUKT: 0,
+            nim: 0
+          };
+        }
+        grouped[key].pendaftar += Number(item.pendaftar || 0);
+        grouped[key].bayarFormulir +=
+          Number(item.bayar_form_karyawan || 0) +
+          Number(item.bayar_form_kipk || 0) +
+          Number(item.bayar_form_reguler || 0) +
+          Number(item.bayar_form_rpl || 0);
+        grouped[key].bayarUKT +=
+          Number(item.bayar_ukt_karyawan || 0) +
+          Number(item.bayar_ukt_reguler || 0) +
+          Number(item.bayar_ukt_rpl || 0);
+        grouped[key].nim += Number(item.nim || 0);
+      });
+
+      const categories = Object.keys(grouped);
+      const pendaftarData = categories.map(cat => grouped[cat].pendaftar);
+      const bayarFormulirData = categories.map(cat => grouped[cat].bayarFormulir);
+      const bayarUKTData = categories.map(cat => grouped[cat].bayarUKT);
+      const nimData = categories.map(cat => grouped[cat].nim);
+
+      const options = {
+        chart: {
+          height: 350,
+          type: 'bar'
+        },
+        title: {
+          text: `Data berdasarkan ${jenjang === 'SARJANA' ? 'Fakultas' : 'Prodi'}`,
+          align: 'center'
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '55%',
+            endingShape: 'rounded'
+          },
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent']
+        },
+        colors: ['rgba(' + app.color.componentColorRgb + ', .5)', app.color.indigo, 'rgba(' + app.color
+          .componentColorRgb + ', .25)', app.color.teal
+        ],
+        series: [{
+            name: 'Pendaftar',
+            data: pendaftarData
+          },
+          {
+            name: 'Bayar Formulir',
+            data: bayarFormulirData
+          },
+          {
+            name: 'Bayar UKT',
+            data: bayarUKTData
+          },
+          {
+            name: 'NIM',
+            data: nimData
+          }
+        ],
+        xaxis: {
+          categories: categories
+        },
+        yaxis: {
+          title: {
+            text: 'Jumlah'
+          }
+        },
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function(val) {
+              return val.toLocaleString();
+            }
+          }
+        }
+      };
+
+      const chartContainer = document.querySelector('#apex-column-chart');
+      chartContainer.innerHTML = '';
+      const chart = new ApexCharts(chartContainer, options);
+      chart.render();
+    }
+
+    function updatePieChart(data, jenjang, groupBy = 'prodi') {
+      const grouped = {};
+      data.forEach(item => {
+        // const key = groupBy === 'fakultas' ? item.fakultas : item.prodi;
+        const key = item.prodi;
+        if (!grouped[key]) {
+          grouped[key] = 0;
+        }
+        grouped[key] += Number(item.pendaftar || 0);
+      });
+
+      const fullLabels = Object.keys(grouped);
+      const labels = fullLabels.map(label => {
+        if (label.length > 10) {
+          return label.split(' ')
+            .map(word => word[0])
+            .join('')
+            .toUpperCase();
+        }
+        return label;
+      });
+
+      const series = fullLabels.map(label => grouped[label]);
+
+      const options = {
+        chart: {
+          height: 665,
+          type: 'pie',
+        },
+        labels: labels,
+        series: series,
+        // title: {
+        //   text: `Proporsi Pendaftar berdasarkan ${groupBy === 'fakultas' ? 'Fakultas' : 'Prodi'}`
+        // },
+        legend: {
+          position: 'bottom',
+          horizontalAlign: 'center',
+          fontSize: '14px'
+        },
+        stroke: {
+          show: true,
+          colors: [app.color.componentBg],
+          width: 2,
+          dashArray: 0
+        },
+        colors: [app.color.pink, app.color.orange, app.color.blue, app.color.success, app.color.indigo],
+        tooltip: {
+          custom: function({
+            series,
+            seriesIndex
+          }) {
+            const fullLabel = fullLabels[seriesIndex]; // pakai label asli
+            const value = series[seriesIndex].toLocaleString();
+            return `<strong>${fullLabel}</strong>: ${value}`;
+          }
+        }
+      };
+
+      const chartContainer = document.querySelector('#apex-pie-chart');
+      chartContainer.innerHTML = '';
+      const chart = new ApexCharts(chartContainer, options);
+      chart.render();
+    }
+
+    // ========================= Fetch Data Start
     function fetchAllData() {
       fetch('/ajx_get/get_data_all')
         .then(res => res.json())
@@ -458,6 +670,20 @@
           updateTotalPelayananOffline(data);
           updateTotalBayarFormulir(data);
           updateTotalBayarUkt(data);
+          updateTotalFormReguler(data);
+          updateTotalFormRpl(data);
+          updateTotalFormKaryawan(data);
+          updateTotalFormKipk(data);
+          updateTotalUktReguler(data);
+          updateTotalUktRpl(data);
+          updateTotalUktKaryawan(data);
+          updateTotalNim(data);
+
+          const jenjang = jenjangDropdown.value || 'SARJANA';
+          updateChart(data, jenjang);
+          updatePieChart(data, jenjang, 'prodi');
+          updatePieChart(data, jenjang, 'fakultas');
+
         });
     }
 
@@ -472,6 +698,19 @@
           updateTotalPelayananOffline(data);
           updateTotalBayarFormulir(data);
           updateTotalBayarUkt(data);
+          updateTotalFormReguler(data);
+          updateTotalFormRpl(data);
+          updateTotalFormKaryawan(data);
+          updateTotalFormKipk(data);
+          updateTotalUktReguler(data);
+          updateTotalUktRpl(data);
+          updateTotalUktKaryawan(data);
+          updateTotalNim(data);
+
+          const jenjang = jenjangDropdown.value || 'SARJANA';
+          updateChart(data, jenjang);
+          updatePieChart(data, jenjang, 'prodi');
+          updatePieChart(data, jenjang, 'fakultas');
         });
     }
 
@@ -486,6 +725,19 @@
           updateTotalPelayananOffline(data);
           updateTotalBayarFormulir(data);
           updateTotalBayarUkt(data);
+          updateTotalFormReguler(data);
+          updateTotalFormRpl(data);
+          updateTotalFormKaryawan(data);
+          updateTotalFormKipk(data);
+          updateTotalUktReguler(data);
+          updateTotalUktRpl(data);
+          updateTotalUktKaryawan(data);
+          updateTotalNim(data);
+
+          const jenjang = jenjangDropdown.value || 'SARJANA';
+          updateChart(data, jenjang);
+          updatePieChart(data, jenjang, 'prodi');
+          updatePieChart(data, jenjang, 'fakultas');
         });
     }
 
@@ -500,6 +752,19 @@
           updateTotalPelayananOffline(data);
           updateTotalBayarFormulir(data);
           updateTotalBayarUkt(data);
+          updateTotalFormReguler(data);
+          updateTotalFormRpl(data);
+          updateTotalFormKaryawan(data);
+          updateTotalFormKipk(data);
+          updateTotalUktReguler(data);
+          updateTotalUktRpl(data);
+          updateTotalUktKaryawan(data);
+          updateTotalNim(data);
+
+          const jenjang = jenjangDropdown.value || 'SARJANA';
+          updateChart(data, jenjang);
+          updatePieChart(data, jenjang, 'prodi');
+          updatePieChart(data, jenjang, 'fakultas');
         });
     }
 
@@ -512,8 +777,22 @@
           updateTotalPelayananOffline(data);
           updateTotalBayarFormulir(data);
           updateTotalBayarUkt(data);
+          updateTotalFormReguler(data);
+          updateTotalFormRpl(data);
+          updateTotalFormKaryawan(data);
+          updateTotalFormKipk(data);
+          updateTotalUktReguler(data);
+          updateTotalUktRpl(data);
+          updateTotalUktKaryawan(data);
+          updateTotalNim(data);
+
+          const jenjang = jenjangDropdown.value || 'SARJANA';
+          updateChart(data, jenjang);
+          updatePieChart(data, jenjang, 'prodi');
+          updatePieChart(data, jenjang, 'fakultas');
         });
     }
+    // ========================= Fetch Data End
 
     jenjangDropdown.addEventListener('change', function() {
       const jenjang = this.value;
@@ -563,5 +842,80 @@
       prodiDropdown.style.display = 'inline-block';
       fetchAllData();
     });
+
+    // return chart start
+    var ChartApex = function() {
+      "use strict";
+      return {
+        //main function
+        init: function() {
+          Apex = {
+            grid: {
+              borderColor: 'rgba(' + app.color.componentColorRgb + ', .15)'
+            },
+            title: {
+              style: {
+                color: app.color.componentColor
+              }
+            },
+            legend: {
+              labels: {
+                colors: app.color.componentColor
+              }
+            },
+            xaxis: {
+              axisBorder: {
+                show: true,
+                color: 'rgba(' + app.color.componentColorRgb + ', .25)',
+                height: 1,
+                width: '100%',
+                offsetX: 0,
+                offsetY: -1
+              },
+              axisTicks: {
+                show: true,
+                borderType: 'solid',
+                color: 'rgba(' + app.color.componentColorRgb + ', .25)',
+                height: 6,
+                offsetX: 0,
+                offsetY: 0
+              },
+              labels: {
+                style: {
+                  colors: app.color.componentColor,
+                  fontSize: app.font.size,
+                  fontFamily: app.font.family,
+                  fontWeight: 400,
+                  cssClass: 'apexcharts-xaxis-label',
+                }
+              }
+            },
+            yaxis: {
+              labels: {
+                style: {
+                  colors: app.color.componentColor,
+                  fontSize: app.font.size,
+                  fontFamily: app.font.family,
+                  fontWeight: 400,
+                  cssClass: 'apexcharts-xaxis-label',
+                }
+              }
+            }
+          }
+
+          updateChart();
+          updatePieChart();
+        }
+      };
+    }();
+
+    $(document).ready(function() {
+      ChartApex.init();
+
+      $(document).on('theme-reload', function() {
+        ChartApex.init();
+      });
+    });
+    // return chart end
   </script>
 @endsection

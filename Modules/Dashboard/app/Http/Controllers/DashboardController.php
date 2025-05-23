@@ -2,15 +2,7 @@
 
 namespace Modules\Dashboard\Http\Controllers;
 
-use Carbon\Carbon;
-use App\Helpers\Fungsi;
-use Illuminate\Http\Request;
-use Modules\Ronda\Models\Ronda;
-use Modules\Master\Models\Warga;
 use App\Http\Controllers\Controller;
-use Modules\Master\Models\Parameter;
-use Modules\Tagihan\Models\TagihanRonda;
-use Modules\Pembayaran\Models\Pembayaran;
 use Modules\Sinkronisasi\Models\Sinkronisasi;
 
 class DashboardController extends Controller
@@ -18,12 +10,7 @@ class DashboardController extends Controller
 
   public function index()
   {
-    $fakultas = Sinkronisasi::select('fakultas')
-      ->where('fakultas', '!=', 'PASCASARJANA')
-      ->distinct()
-      ->latest()
-      ->pluck('fakultas');
-    return view('dashboard::index', ['data', $fakultas]);
+    return view('dashboard::index');
   }
 
   public function get_data_all()
@@ -40,7 +27,6 @@ class DashboardController extends Controller
     } else {
       $data = Sinkronisasi::all();
     }
-
     return response()->json($data);
   }
 
@@ -49,7 +35,6 @@ class DashboardController extends Controller
     $data = Sinkronisasi::where('fakultas', '!=', 'PASCASARJANA')
       ->where('fakultas', 'like', '%' . $nama_fakultas . '%')
       ->get();
-
     return response()->json($data);
   }
 
