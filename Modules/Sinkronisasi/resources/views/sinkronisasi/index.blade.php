@@ -23,7 +23,10 @@
     </div>
     <div
       style="display: flex; justify-content: center; align-items: center; margin: 10px auto 15px auto; width: max-content;">
-      <a href="{{ route('sinkronisasi.create') }}" data-confirm-sinkron="true" class="btn btn-primary disabled">
+      <a href="{{ route('sinkronisasi.create') }}" data-confirm-sinkron="true"
+        class="btn btn-primary
+      {{-- disabled --}}
+      ">
         Sinkronkan Database &ensp;
         <i class="fa fa fa-refresh" aria-hidden="true" style="font-size: 14px"></i>
         <i class="fa fa fa fa-database" aria-hidden="true" style="font-size: 14px"></i>

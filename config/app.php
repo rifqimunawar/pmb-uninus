@@ -123,5 +123,4 @@ return [
     'store' => env('APP_MAINTENANCE_STORE', 'database'),
   ],
 
-  'GET_REPORT_UMUM' => env('GET_REPORT_UMUM'),
 ];
