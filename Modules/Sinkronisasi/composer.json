@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/sinkronisasi",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Sinkronisasi\\": "app/",
+            "Modules\\Sinkronisasi\\Database\\Factories\\": "database/factories/",
+            "Modules\\Sinkronisasi\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Sinkronisasi\\Tests\\": "tests/"
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name": "Sinkronisasi",
+    "alias": "sinkronisasi",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Sinkronisasi\\Providers\\SinkronisasiServiceProvider"
+    ],
+    "files": []
+}

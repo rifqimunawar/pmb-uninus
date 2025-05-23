@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 use Modules\Auth\Http\Controllers\AuthController;
+use Modules\Auth\Http\Controllers\SocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +23,6 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/auth/{id}', [AuthController::class, 'edit'])->name('auth.edit');
 Route::put('/auth/{id}', [AuthController::class, 'update'])->name('auth.update');
 Route::delete('/auth/{id}/del', [AuthController::class, 'destroy'])->name('auth.destroy');
+
+Route::get('/login-google', [SocialiteController::class, 'redirect'])->name('login.google');
+Route::get('/callback', [SocialiteController::class, 'callback'])->name('callback');

@@ -1,0 +1,11 @@
+{
+    "name": "ReportUmum",
+    "alias": "reportumum",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ReportUmum\\Providers\\ReportUmumServiceProvider"
+    ],
+    "files": []
+}

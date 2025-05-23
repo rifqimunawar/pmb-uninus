@@ -4,5 +4,7 @@
     "Auth": true,
     "Dashboard": true,
     "Profile": true,
-    "Laporan": true
+    "Laporan": true,
+    "ReportUmum": true,
+    "Sinkronisasi": true
 }

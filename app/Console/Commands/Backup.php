@@ -66,6 +66,14 @@ class Backup extends Command
         'role_menu',
       ],
 
+      // lanjutan
+      'sinkronisasis' => [
+        'sinkronisasis',
+      ],
+      'limit_apis' => [
+        'limit_apis',
+      ],
+
     ];
     if ($opt_users == 1 || $arg_type == 'users')
       echo shell_exec('php artisan iseed users --force');

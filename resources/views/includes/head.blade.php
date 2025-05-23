@@ -29,11 +29,15 @@
 <link href="{{ asset('assets/plugins/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
 <link href="{{ asset('assets/plugins/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css') }}"
   rel="stylesheet" />
-{{-- daterange picker --}}
-{{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script> --}}
-
 {{-- summernote --}}
 <link href="{{ asset('assets/plugins/summernote/dist/summernote-lite.css') }}" rel="stylesheet" />
+
+
+{{-- untuk dashboard   --}}
+<!-- ================== BEGIN page-css ================== -->
+<link href="{{ asset('/assets/plugins/jvectormap-next/jquery-jvectormap.css') }}" rel="stylesheet" />
+<link href="{{ asset('/assets/plugins/nvd3/build/nv.d3.css') }}" rel="stylesheet" />
+<!-- ================== END page-css ================== -->
 <style>
   #loadingOverlay {
     position: fixed;

@@ -19,5 +19,10 @@ use Modules\Dashboard\Http\Controllers\DashboardController;
 
 Route::middleware('auth')->group(function () {
   Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-  // Route::get('/get_data_statistik', [DashboardController::class, 'statistik'])->name('statistik');
+
+  Route::get('/ajx_get/get_data_all', [DashboardController::class, 'get_data_all']);
+  Route::get('/ajx_get/get_data_jenjang/{nama_jenjang}', [DashboardController::class, 'get_data_jenjang']);
+  Route::get('/ajx_get/get_data_fakultas/{nama_fakultas}', [DashboardController::class, 'get_data_fakultas']);
+  Route::get('/ajx_get/get_data_prodi/{nama_prodi}', [DashboardController::class, 'get_data_prodi']);
+
 });

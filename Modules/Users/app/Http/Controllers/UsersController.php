@@ -37,7 +37,6 @@ class UsersController extends Controller
   {
     Fungsi::hakAkses('/users');
     $title = "User Baru";
-    $dataWarga = Warga::all();
     $dataRoles = Roles::all();
 
     return view(
@@ -45,7 +44,6 @@ class UsersController extends Controller
       [
         'title' => $title,
         'dataRoles' => $dataRoles,
-        'dataWarga' => $dataWarga,
       ]
     );
   }
@@ -90,8 +88,7 @@ class UsersController extends Controller
     ]));
 
     $title = "Update Users";
-    $data = User::with('warga')->findOrFail($id);
-    $dataWarga = Warga::all();
+    $data = User::findOrFail($id);
     $dataRoles = Roles::all();
     return view(
       'users::users.edit',
@@ -99,7 +96,6 @@ class UsersController extends Controller
         'data' => $data,
         'title' => $title,
         'dataRoles' => $dataRoles,
-        'dataWarga' => $dataWarga,
       ]
     );
   }

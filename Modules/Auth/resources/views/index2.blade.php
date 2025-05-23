@@ -35,7 +35,7 @@
     <div class="login login-v2 fw-bold">
       <!-- BEGIN login-cover -->
       <div class="login-cover">
-        <div class="login-cover-img" style="background-image: url(../assets/img/login-bg/login-bg-17.jpg)"
+        <div class="login-cover-img" style="background-image: url(../assets/img/login-bg/login-bg-19.jpg)"
           data-id="login-cover-image"></div>
         <div class="login-cover-bg"></div>
       </div>
@@ -83,6 +83,28 @@
             <div class="mb-20px">
               <button type="submit" class="btn btn-theme d-block w-100 h-45px btn-lg">Sign me in</button>
             </div>
+
+            {{-- <div class="login-buttons">
+              <a href="{{ route('login.google') }}"
+                class="btn btn-theme h-45px d-block w-100 btn-lg d-flex align-items-center justify-content-center gap-2"
+                style="background-color: white; color: #444; border: 1px solid #ccc;">
+
+                <!-- Google Icon -->
+                <svg width="20" height="20" viewBox="0 0 48 48">
+                  <path fill="#EA4335"
+                    d="M24 9.5c3.3 0 6.3 1.2 8.6 3.2l6.4-6.4C34.4 2.4 29.5 0 24 0 14.8 0 6.9 5.8 3.2 14.1l7.5 5.8C12.5 13.1 17.8 9.5 24 9.5z" />
+                  <path fill="#4285F4"
+                    d="M46.1 24.5c0-1.4-.1-2.7-.4-4H24v8.1h12.5c-1.1 3.3-3.4 6.1-6.5 8l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17.9z" />
+                  <path fill="#FBBC05"
+                    d="M10.7 28.1c-1-3-1-6.3 0-9.3l-7.5-5.8C.7 17.6 0 20.7 0 24s.7 6.4 2.2 9.1l7.5-5z" />
+                  <path fill="#34A853"
+                    d="M24 48c5.5 0 10.4-1.8 14.2-5l-7.5-5.8c-2 1.3-4.5 2-6.7 2-6.2 0-11.5-4.2-13.3-9.8l-7.5 5.8C6.9 42.2 14.8 48 24 48z" />
+                </svg>
+
+                <span>Login dengan Google</span>
+              </a>
+            </div> --}}
+
             {{-- <div class="text-gray-500">
               Not a member yet? Click <a href="register_v3.html" class="text-white">here</a> to register.
             </div> --}}
@@ -97,8 +119,8 @@
     <!-- BEGIN login-bg -->
     <div class="login-bg-list clearfix">
       <div class="login-bg-list-item active"><a href="javascript:;" class="login-bg-list-link"
-          data-toggle="login-change-bg" data-img="../assets/img/login-bg/login-bg-17.jpg"
-          style="background-image: url(../assets/img/login-bg/login-bg-17.jpg)"></a></div>
+          data-toggle="login-change-bg" data-img="../assets/img/login-bg/login-bg-19.jpg"
+          style="background-image: url(../assets/img/login-bg/login-bg-19.jpg)"></a></div>
       <div class="login-bg-list-item"><a href="javascript:;" class="login-bg-list-link" data-toggle="login-change-bg"
           data-img="../assets/img/login-bg/login-bg-16.jpg"
           style="background-image: url(../assets/img/login-bg/login-bg-16.jpg)"></a></div>
