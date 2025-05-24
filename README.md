@@ -20,3 +20,6 @@
 - php artisan view:clear
 - composer install --optimize-autoloader
 - composer migrate:refresh --seed
+
+
+testitng kirim readme 
