@@ -6,3 +6,17 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+
+
+- delete composer lock,json
+- copy paste and .env.example,
+
+- configurasi database di .env
+
+- mkdir -p storage/framework/views
+- chmod -R 775 storage
+- php artisan config:clear
+- php artisan cache:clear
+- php artisan view:clear
+- composer install --optimize-autoloader
+- composer migrate:refresh --seed
