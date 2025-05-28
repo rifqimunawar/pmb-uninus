@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/kegiatan",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Kegiatan\\": "app/",
+            "Modules\\Kegiatan\\Database\\Factories\\": "database/factories/",
+            "Modules\\Kegiatan\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Kegiatan\\Tests\\": "tests/"
+        }
+    }
+}

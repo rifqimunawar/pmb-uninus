@@ -1,9 +1,11 @@
 <?php
 
 namespace Modules\Dashboard\Http\Controllers;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 use Modules\Sinkronisasi\Models\Sinkronisasi;
 
 class DashboardController extends Controller
@@ -15,15 +17,23 @@ class DashboardController extends Controller
     $totalPendaftar = $data->sum('pendaftar');  // jumlahkan field pendaftar dari seluruh data
 
     $totalBayarFormulir = $data->sum('bayar_form_reguler')
-        + $data->sum('bayar_form_rpl')
-        + $data->sum('bayar_form_karyawan')
-        + $data->sum('bayar_form_kipk');
+      + $data->sum('bayar_form_rpl')
+      + $data->sum('bayar_form_karyawan')
+      + $data->sum('bayar_form_kipk');
 
     $totalBayarUKT = $data->sum('bayar_ukt_reguler')
-        + $data->sum('bayar_ukt_rpl')
-        + $data->sum('bayar_ukt_karyawan');
+      + $data->sum('bayar_ukt_rpl')
+      + $data->sum('bayar_ukt_karyawan');
 
-    return view('dashboard::index', compact('data', 'totalPendaftar', 'totalBayarFormulir', 'totalBayarUKT'));
+    $waktu_shalat = $this->waktuShalatSekarang();
+
+    return view('dashboard::index', [
+      'data' => $data,
+      'totalPendaftar' => $totalPendaftar,
+      'totalBayarFormulir' => $totalBayarFormulir,
+      'totalBayarUKT' => $totalBayarUKT,
+      'waktu_shalat' => $waktu_shalat,
+    ]);
   }
 
   public function get_data_all()
@@ -59,31 +69,31 @@ class DashboardController extends Controller
   }
 
   public function get_data_bayar_formulir(Request $request)
-{
+  {
     $validated = $request->validate([
-        'jenjang' => 'nullable|string',
-        'fakultas' => 'nullable|string',
-        'prodi' => 'nullable|string',
+      'jenjang' => 'nullable|string',
+      'fakultas' => 'nullable|string',
+      'prodi' => 'nullable|string',
     ]);
 
     $query = Sinkronisasi::query();
 
     // Filter berdasarkan jenjang pakai kolom fakultas, seperti di method get_data_jenjang
     if (!empty($validated['jenjang'])) {
-        if (strtoupper($validated['jenjang']) === 'PASCASARJANA') {
-            $query->where('fakultas', 'PASCASARJANA');
-        } elseif (strtoupper($validated['jenjang']) === 'SARJANA') {
-            $query->where('fakultas', '!=', 'PASCASARJANA');
-        }
-        // Bisa tambah kondisi lain jika ada jenjang lain
+      if (strtoupper($validated['jenjang']) === 'PASCASARJANA') {
+        $query->where('fakultas', 'PASCASARJANA');
+      } elseif (strtoupper($validated['jenjang']) === 'SARJANA') {
+        $query->where('fakultas', '!=', 'PASCASARJANA');
+      }
+      // Bisa tambah kondisi lain jika ada jenjang lain
     }
 
     if (!empty($validated['fakultas'])) {
-        $query->where('fakultas', $validated['fakultas']);
+      $query->where('fakultas', $validated['fakultas']);
     }
 
     if (!empty($validated['prodi'])) {
-        $query->where('prodi', $validated['prodi']);
+      $query->where('prodi', $validated['prodi']);
     }
 
     $data = $query->selectRaw('
@@ -94,19 +104,50 @@ class DashboardController extends Controller
     ')->first();
 
     $result = [
-        'reguler' => (int) ($data->reguler ?? 0),
-        'rpl' => (int) ($data->rpl ?? 0),
-        'karyawan' => (int) ($data->karyawan ?? 0),
-        'kipk' => (int) ($data->kipk ?? 0),
-        'total' => (int) (
-            ($data->reguler ?? 0) +
-            ($data->rpl ?? 0) +
-            ($data->karyawan ?? 0) +
-            ($data->kipk ?? 0)
-        ),
+      'reguler' => (int) ($data->reguler ?? 0),
+      'rpl' => (int) ($data->rpl ?? 0),
+      'karyawan' => (int) ($data->karyawan ?? 0),
+      'kipk' => (int) ($data->kipk ?? 0),
+      'total' => (int) (
+        ($data->reguler ?? 0) +
+        ($data->rpl ?? 0) +
+        ($data->karyawan ?? 0) +
+        ($data->kipk ?? 0)
+      ),
     ];
 
     return response()->json($result);
-}
+  }
 
+  public function waktuShalatSekarang()
+  {
+    $api_waktu_shalat = env('API_JADWAL_WAKTU_SHALAT');
+    $response = Http::get($api_waktu_shalat . Carbon::now()->format('Y/m/d'));
+    $data = $response->json();
+    $jadwal = $data['data']['jadwal'];
+    $now = Carbon::now();
+    $subuh = Carbon::createFromFormat('H:i', $jadwal['subuh']);
+    $dzuhur = Carbon::createFromFormat('H:i', $jadwal['dzuhur']);
+    $ashar = Carbon::createFromFormat('H:i', $jadwal['ashar']);
+    $maghrib = Carbon::createFromFormat('H:i', $jadwal['maghrib']);
+    $isya = Carbon::createFromFormat('H:i', $jadwal['isya']);
+    foreach ([$subuh, $dzuhur, $ashar, $maghrib, $isya] as $waktu) {
+      $waktu->setDate($now->year, $now->month, $now->day);
+    }
+    $waktuSaatIni = null;
+    if ($now->between($subuh, $dzuhur)) {
+      $waktuSaatIni = 'Subuh';
+    } elseif ($now->between($dzuhur, $ashar)) {
+      $waktuSaatIni = 'Dzuhur';
+    } elseif ($now->between($ashar, $maghrib)) {
+      $waktuSaatIni = 'Ashar';
+    } elseif ($now->between($maghrib, $isya)) {
+      $waktuSaatIni = 'Maghrib';
+    } elseif ($now->greaterThanOrEqualTo($isya)) {
+      $waktuSaatIni = 'Isya';
+    } elseif ($now->lessThan($subuh)) {
+      $waktuSaatIni = 'Menjelang Subuh';
+    }
+    return $waktuSaatIni;
+  }
 }

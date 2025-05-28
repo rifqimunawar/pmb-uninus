@@ -25,11 +25,11 @@ class LimitApisTableSeeder extends Seeder
                 'user_id' => 1,
                 'month' => 5,
                 'year' => 2025,
-                'usage_count' => 3,
+                'usage_count' => 43,
                 'limit' => 500,
                 'deleted_at' => NULL,
                 'created_at' => '2025-05-23 12:04:22',
-                'updated_at' => '2025-05-23 12:07:58',
+                'updated_at' => '2025-05-23 16:07:28',
             ),
         ));
         

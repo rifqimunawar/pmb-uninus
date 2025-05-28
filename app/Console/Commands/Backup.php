@@ -73,6 +73,9 @@ class Backup extends Command
       'limit_apis' => [
         'limit_apis',
       ],
+      'kegiatans' => [
+        'kegiatans',
+      ],
 
     ];
     if ($opt_users == 1 || $arg_type == 'users')

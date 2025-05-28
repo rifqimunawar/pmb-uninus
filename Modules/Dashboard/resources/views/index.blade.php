@@ -1,6 +1,7 @@
 @extends('dashboard::layouts.master')
 @php
   use App\Helpers\Fungsi;
+  use App\Helpers\GetSettings;
 @endphp
 @section('content')
   <!-- BEGIN row -->
@@ -8,16 +9,35 @@
   <!-- BEGIN row -->
 
   <!-- Tampilan Waktu -->
-    <div class="container vh-1 d-flex justify-content-center align-items-center">
-      <div class="text-center">
-        <div class="display-6 fw-bold text-dark mb-3" id="datetime">Memuat...</div>
+  <div class="container-fluid d-flex justify-content-center align-items-center" style="width:100%; margin-bottom: 2rem;">
+    <div class="d-flex justify-content-between align-items-center p-4 rounded-4 shadow-lg"
+      style="background: linear-gradient(135deg, #acb507, #1da20f); width: 100%; ;">
+
+      <!-- Kolom 1: Logo -->
+      <div class="text-center flex-fill">
+        <img src="{{ GetSettings::getLogo() }}" alt="Logo Uninus"
+          style="max-height: 60px; filter: drop-shadow(0 0 8px rgb(6, 243, 255));" />
       </div>
+
+      <!-- Kolom 2: Selamat Datang -->
+      <div class="text-center flex-fill">
+        <div class="fs-5 fw-semibold text-white">Selamat Datang, {{ Auth::user()->username }}</div>
+        <div class="text-dark mt-1" style="font-size: 0.9rem;">Waktu Shalat {{ $waktu_shalat }}</div>
+
+      </div>
+
+      <!-- Kolom 3: Waktu -->
+      <div class="text-center flex-fill">
+        <div id="jam_menit" class="fs-4 fw-semibold text-white">Memuat...</div>
+        <div id="tanggal_tahun" class="fs-6 fw-semibold text-white">Memuat...</div>
+      </div>
+
     </div>
+  </div>
   <!-- End Tampilan Waktu -->
 
   <!-- BEGIN REPORT UMUM  -->
 
-  <div class="container-fluid px-3" >
   <div class="row g-3 mb-3">
     <!-- Info Kegiatan -->
     <div class="col-12 col-md-4">
@@ -25,7 +45,27 @@
         <div class="card-body d-flex flex-column">
           <h5 class="mb-3">Info Kegiatan</h5>
           <div class="text-muted small mb-2">Tanggal: <strong>26 Mei 2025</strong></div>
-          <img src="path/to/foto-kegiatan.jpg" alt="Foto Kegiatan" class="img-fluid rounded mb-3" style="object-fit: cover; height: 150px; width: 100%;">
+
+          <!-- Carousel Start -->
+          <div id="carouselKegiatan" class="carousel slide mb-3" data-bs-ride="carousel">
+            <div class="carousel-inner rounded">
+              <div class="carousel-item active">
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Joko_Widodo_2014_official_portrait.jpg/250px-Joko_Widodo_2014_official_portrait.jpg"
+                  class="d-block w-100" alt="Slide 1" style="object-fit: cover; height: 150px;">
+              </div>
+              <div class="carousel-item">
+                <img src="https://picsum.photos/id/1011/600/300" class="d-block w-100" alt="Slide 2"
+                  style="object-fit: cover; height: 150px;">
+              </div>
+              <div class="carousel-item">
+                <img src="https://picsum.photos/id/1015/600/300" class="d-block w-100" alt="Slide 3"
+                  style="object-fit: cover; height: 150px;">
+              </div>
+            </div>
+          </div>
+          <!-- Carousel End -->
+
           <h6 class="text-white">Judul Kegiatan</h6>
           <p class="text-muted small mt-auto">
             Keterangan singkat mengenai kegiatan yang sedang atau akan berlangsung.
@@ -34,8 +74,9 @@
       </div>
     </div>
 
+
     <!-- Report Umum -->
-    <div class="col-12 col-md-4">
+    <div class="col-4 col-md-4">
       <div class="card h-100 bg-gray-800 text-white">
         <div class="card-body d-flex flex-column justify-content-between">
           <div>
@@ -49,11 +90,11 @@
                 <div class="text-info fs-5">{{ $totalPendaftar }}</div>
               </div>
               <div class="col-4 border-end">
-                <div class="fw-bold mb-1">Bayar Formulir</div>
+                <div class="fw-bold mb-1">Total Bayar Formulir</div>
                 <div class="text-success fs-5">{{ $totalBayarFormulir }}</div>
               </div>
               <div class="col-4">
-                <div class="fw-bold mb-1">Bayar UKT</div>
+                <div class="fw-bold mb-1">Total Bayar UKT</div>
                 <div class="text-warning fs-5">{{ $totalBayarUKT }}</div>
               </div>
             </div>
@@ -63,7 +104,7 @@
     </div>
 
     <!-- Rencana Kegiatan -->
-    <div class="col-12 col-md-4">
+    <div class="col-4 col-md-4">
       <div class="card h-100 bg-gray-800 text-white">
         <div class="card-body d-flex flex-column">
           <h5 class="mb-3">Rencana Kegiatan</h5>
@@ -86,12 +127,11 @@
       </div>
     </div>
   </div>
-</div>
 
   <!-- END REPORT UMUM -->
 
   <!-- BEGIN daterange-filter -->
-  <div class="d-sm-flex align-items-center mb-3 gap-2 flex-wrap">
+  <div class="d-flex align-items-center mb-3 gap-2 flex-wrap">
 
     <select id="jenjang-dropdown" class="form-select form-select-sm w-auto">
       <option value="">Semua Jenjang</option>
@@ -160,8 +200,8 @@
                   <div class="fs-18px mb-5px fw-bold"><span data-animation="number"
                       data-value="pelayanan-offline">0</span></div>
                   <div class="progress h-5px rounded-3 bg-gray-900 mb-5px">
-                    <div class="progress-bar progress-bar-striped rounded-right" data-animation="width" data-value="55%"
-                      style="width: 0%"></div>
+                    <div class="progress-bar progress-bar-striped rounded-right" data-animation="width"
+                      data-value="55%" style="width: 0%"></div>
                   </div>
                 </div>
                 <!-- END col-6 -->
@@ -217,7 +257,8 @@
                   REGULER
                 </div>
                 <div class="d-flex align-items-center ms-auto">
-                  <div class="w-50px ps-2 fw-bold"><span data-animation="number" data-value="data-form-reguler">0</span>
+                  <div class="w-50px ps-2 fw-bold"><span data-animation="number"
+                      data-value="data-form-reguler">0</span>
                   </div>
                   Camaba
                 </div>
@@ -243,7 +284,8 @@
                   KARYAWAN
                 </div>
                 <div class="d-flex align-items-center ms-auto">
-                  <div class="w-50px ps-2 fw-bold"><span data-animation="number" data-value="data-form-karyawan">0</span>
+                  <div class="w-50px ps-2 fw-bold"><span data-animation="number"
+                      data-value="data-form-karyawan">0</span>
                   </div>
                   Camaba
                 </div>
@@ -413,30 +455,20 @@
     <!-- END col-4 -->
   </div>
 
-  <div class="col-xl-8 col-lg-6">
-  <!-- BEGIN card -->
-  <div class="card border-0 mb-3 bg-gray-800 text-white">
-    <div class="card-body">
-      <div class="mb-3 text-gray-500"><b>STATISTIK PEMBAYARAN FORMULIR</b> 
-        <span class="ms-2">
-          <i class="fa fa-info-circle"
-             data-bs-toggle="popover"
-             data-bs-trigger="hover"
-             data-bs-title="Distribusi kategori pembayaran"
-             data-bs-placement="top"
-             data-bs-content="Jumlah pendaftar berdasarkan kategori pembayaran formulir (Reguler, RPL, Karyawan, KIPK)">
-          </i>
-        </span>
+  <div class="col-xl-12 col-lg-12">
+    <div class="card border-0 mb-3 bg-gray-800 text-white">
+      <div class="card-body">
+        <div class="mb-3 text-gray-500 "><b>CAMABA ANALYTICS</b> <span class="ms-2"><i class="fa fa-info-circle"
+              data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="Top products with units sold"
+              data-bs-placement="top"
+              data-bs-content="Products with the most individual units sold. Includes orders from all sales channels."
+              data-original-title="" title=""></i></span></div>
       </div>
-    </div>
-    <div class="panel-body p-0 pe-10px ps-10px">
-      <div style="height: 300px;">
-        <canvas id="chartBayarFormulir" style="width: 100%; height: 100%;"></canvas>
+      <div class="panel-body p-0 pe-10px ps-10px">
+        <div id="chartBayarFormulir"></div>
       </div>
     </div>
   </div>
-  <!-- END card -->
-</div>
 
   <!-- ================== BEGIN page-js ================== -->
   <script src="{{ asset('assets/plugins/d3/d3.min.js') }}"></script>
@@ -481,6 +513,30 @@
         option.textContent = item;
         dropdown.appendChild(option);
       });
+    }
+
+    function updateDateTime() {
+      const waktu = new Date();
+
+      const hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+      const bulan = [
+        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
+      ];
+
+      const jam = waktu.getHours().toString().padStart(2, '0');
+      const menit = waktu.getMinutes().toString().padStart(2, '0');
+      const detik = waktu.getSeconds().toString().padStart(2, '0');
+
+      const hariText = hari[waktu.getDay()];
+      const tanggal = waktu.getDate();
+      const bulanText = bulan[waktu.getMonth()];
+      const tahun = waktu.getFullYear();
+
+      const jam_menit = `${jam}:${menit}:${detik}`;
+      const tanggal_tahun = `${hariText} ${tanggal} ${bulanText} ${tahun}`;
+      document.getElementById("jam_menit").textContent = jam_menit;
+      document.getElementById("tanggal_tahun").textContent = tanggal_tahun;
     }
 
     function updateTotalPendaftar(data) {
@@ -644,7 +700,7 @@
         plotOptions: {
           bar: {
             horizontal: false,
-            columnWidth: '55%',
+            columnWidth: '100%',
             endingShape: 'rounded'
           },
         },
@@ -699,6 +755,92 @@
       const chartContainer = document.querySelector('#apex-column-chart');
       chartContainer.innerHTML = '';
       const chart = new ApexCharts(chartContainer, options);
+      chart.render();
+    }
+
+    function updateChartFormulir(data) {
+      let totalReguler = 0;
+      let totalRPL = 0;
+      let totalKaryawan = 0;
+      let totalKIPK = 0;
+
+      data.forEach(item => {
+        totalKaryawan += Number(item.bayar_form_karyawan) || 0;
+        totalKIPK += Number(item.bayar_form_kipk) || 0;
+        totalReguler += Number(item.bayar_form_reguler) || 0;
+        totalRPL += Number(item.bayar_form_rpl) || 0;
+      });
+
+      const optionsFormulir = {
+        chart: {
+          height: 350,
+          type: 'bar'
+        },
+        title: {
+          text: 'Total Pembayaran Formulir',
+          align: 'center'
+        },
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: '100%',
+            endingShape: 'rounded'
+          },
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          show: true,
+          width: 2,
+          colors: ['transparent']
+        },
+        colors: ['rgba(' + app.color.componentColorRgb + ', .5)', app.color.indigo, 'rgba(' + app.color
+          .componentColorRgb + ', .25)', app.color.teal
+        ],
+        series: [{
+            name: 'REGULER',
+            data: [totalReguler]
+          },
+          {
+            name: 'RPL',
+            data: [totalRPL]
+          },
+          {
+            name: 'KARYAWAN',
+            data: [totalKaryawan]
+          },
+          {
+            name: 'KIPK',
+            data: [totalKIPK]
+          }
+        ],
+        xaxis: {
+          categories: ['']
+        },
+        yaxis: {
+          title: {
+            text: 'Jumlah'
+          }
+        },
+        fill: {
+          opacity: 1
+        },
+        tooltip: {
+          y: {
+            formatter: function(val) {
+              return val.toLocaleString();
+            }
+          }
+        },
+        legend: {
+          show: true
+        }
+      };
+
+      const chartContainer = document.querySelector('#chartBayarFormulir');
+      chartContainer.innerHTML = '';
+      const chart = new ApexCharts(chartContainer, optionsFormulir);
       chart.render();
     }
 
@@ -791,6 +933,7 @@
 
           const jenjang = jenjangDropdown.value || 'SARJANA';
           updateChart(data, jenjang);
+          updateChartFormulir(data, jenjang);
           updatePieChart(data, jenjang, 'prodi');
           updatePieChart(data, jenjang, 'fakultas');
 
@@ -819,6 +962,7 @@
 
           const jenjang = jenjangDropdown.value || 'SARJANA';
           updateChart(data, jenjang);
+          updateChartFormulir(data, jenjang);
           updatePieChart(data, jenjang, 'prodi');
           updatePieChart(data, jenjang, 'fakultas');
         });
@@ -846,6 +990,7 @@
 
           const jenjang = jenjangDropdown.value || 'SARJANA';
           updateChart(data, jenjang);
+          updateChartFormulir(data, jenjang);
           updatePieChart(data, jenjang, 'prodi');
           updatePieChart(data, jenjang, 'fakultas');
         });
@@ -873,6 +1018,7 @@
 
           const jenjang = jenjangDropdown.value || 'SARJANA';
           updateChart(data, jenjang);
+          updateChartFormulir(data, jenjang);
           updatePieChart(data, jenjang, 'prodi');
           updatePieChart(data, jenjang, 'fakultas');
         });
@@ -898,6 +1044,7 @@
 
           const jenjang = jenjangDropdown.value || 'SARJANA';
           updateChart(data, jenjang);
+          updateChartFormulir(data, jenjang);
           updatePieChart(data, jenjang, 'prodi');
           updatePieChart(data, jenjang, 'fakultas');
         });
@@ -1014,6 +1161,7 @@
           }
 
           updateChart();
+          updateChartFormulir();
           updatePieChart();
         }
       };
@@ -1027,136 +1175,9 @@
       });
     });
     // return chart end
-  </script>
 
-  <!-- Begin Chart Bayar Formulir -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
-  <script>
-      let chartBayarFormulir = null;
-
-      // Ambil data bayar formulir dengan filter (jenjang, fakultas, prodi)
-      async function fetchDataBayarFormulir(filter = {}) {
-        const query = new URLSearchParams(filter).toString();
-        const response = await fetch(`/ajx_get/data_bayar_formulir?${query}`);
-        if (!response.ok) {
-          console.error('Failed to fetch data bayar formulir');
-          return { reguler: 0, rpl: 0, karyawan: 0, kipk: 0 };
-        }
-        return await response.json();
-      }
-
-      // Render atau update chart bayar formulir
-      function renderChartBayarFormulir(data) {
-        const ctx = document.getElementById('chartBayarFormulir').getContext('2d');
-
-        const labels = ['Reguler', 'RPL', 'Karyawan', 'KIPK'];
-        const datasetData = [
-          data.reguler || 0,
-          data.rpl || 0,
-          data.karyawan || 0,
-          data.kipk || 0
-        ];
-
-        if (chartBayarFormulir) {
-          chartBayarFormulir.data.datasets[0].data = datasetData;
-          chartBayarFormulir.update();
-        } else {
-          chartBayarFormulir = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: labels,
-              datasets: [{
-                label: 'Jumlah Pendaftar',
-                data: datasetData,
-                backgroundColor: [
-                  'rgba(0, 123, 255, 0.7)',
-                  'rgba(40, 167, 69, 0.7)',
-                  'rgba(255, 193, 7, 0.7)',
-                  'rgba(220, 53, 69, 0.7)'
-                ],
-                borderColor: [
-                  'rgba(0, 123, 255, 1)',
-                  'rgba(40, 167, 69, 1)',
-                  'rgba(255, 193, 7, 1)',
-                  'rgba(220, 53, 69, 1)'
-                ],
-                borderWidth: 2
-              }]
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: { labels: { color: '#ccc' } },
-                tooltip: { mode: 'index', intersect: false }
-              },
-              scales: {
-                x: {
-                  ticks: { color: '#ccc' },
-                  grid: { color: 'rgba(255,255,255,0.1)' }
-                },
-                y: {
-                  beginAtZero: true,
-                  ticks: { color: '#ccc', stepSize: 1 },
-                  grid: { color: 'rgba(255,255,255,0.1)' }
-                }
-              }
-            }
-          });
-        }
-      }
-
-      // Event handler saat filter dropdown berubah
-      async function handleFilterChange() {
-        const jenjang = document.getElementById('jenjang-dropdown')?.value || '';
-        const fakultas = document.getElementById('fakultas-dropdown')?.value || '';
-        const prodi = document.getElementById('prodi-dropdown')?.value || '';
-
-        const filterParams = { jenjang, fakultas, prodi };
-        const data = await fetchDataBayarFormulir(filterParams);
-        renderChartBayarFormulir(data);
-      }
-
-      // Inisialisasi event listener dan load data awal
-      document.addEventListener('DOMContentLoaded', () => {
-        ['jenjang-dropdown', 'fakultas-dropdown', 'prodi-dropdown'].forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.addEventListener('change', handleFilterChange);
-        });
-
-        handleFilterChange();
-      });
-  </script>
-  <!-- END Chart Bayar Formulir -->
-
-  <!-- Begin Tampilan Waktu -->
-  <script>
-    function updateDateTime() {
-      const waktu = new Date();
-
-      const hari = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
-      const bulan = [
-        'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-        'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'
-      ];
-
-      const jam = waktu.getHours().toString().padStart(2, '0');
-      const menit = waktu.getMinutes().toString().padStart(2, '0');
-      const detik = waktu.getSeconds().toString().padStart(2, '0');
-
-      const hariText = hari[waktu.getDay()];
-      const tanggal = waktu.getDate();
-      const bulanText = bulan[waktu.getMonth()];
-      const tahun = waktu.getFullYear();
-
-      const tampil = `${jam}:${menit}, ${hariText}, ${tanggal} ${bulanText} ${tahun}`;
-      document.getElementById("datetime").textContent = tampil;
-    }
-
+    // pemanggilan waktu
     setInterval(updateDateTime, 1000);
     updateDateTime();
   </script>
-  <!-- End Tampilan Waktu -->
-
 @endsection

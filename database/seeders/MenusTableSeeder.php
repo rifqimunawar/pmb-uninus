@@ -705,6 +705,20 @@ class MenusTableSeeder extends Seeder
                 'created_at' => '2025-05-23 10:30:43',
                 'updated_at' => '2025-05-23 10:30:43',
             ),
+            49 => 
+            array (
+                'id' => 50,
+                'title' => 'Kegiatan',
+                'url' => '/kegiatan',
+                'route-name' => NULL,
+                'icon' => 'fa fa-list-ol',
+                'caret' => 0,
+                'aktif' => 1,
+                'parent_id' => NULL,
+                'deleted_at' => NULL,
+                'created_at' => '2025-05-28 14:31:14',
+                'updated_at' => '2025-05-28 14:31:14',
+            ),
         ));
         
         

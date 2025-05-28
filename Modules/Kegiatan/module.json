@@ -1,0 +1,11 @@
+{
+    "name": "Kegiatan",
+    "alias": "kegiatan",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Kegiatan\\Providers\\KegiatanServiceProvider"
+    ],
+    "files": []
+}

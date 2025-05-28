@@ -6,5 +6,6 @@
     "Profile": true,
     "Laporan": true,
     "ReportUmum": true,
-    "Sinkronisasi": true
+    "Sinkronisasi": true,
+    "Kegiatan": true
 }

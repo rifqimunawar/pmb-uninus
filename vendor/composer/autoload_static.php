@@ -179,6 +179,10 @@ class ComposerStaticInitb6b88fe6fefb5891015b39505dfcfc64
             'Modules\\Laporan\\Database\\Seeders\\' => 33,
             'Modules\\Laporan\\Database\\Factories\\' => 35,
             'Modules\\Laporan\\' => 16,
+            'Modules\\Kegiatan\\Tests\\' => 23,
+            'Modules\\Kegiatan\\Database\\Seeders\\' => 34,
+            'Modules\\Kegiatan\\Database\\Factories\\' => 36,
+            'Modules\\Kegiatan\\' => 17,
             'Modules\\Dashboard\\Tests\\' => 24,
             'Modules\\Dashboard\\Database\\Seeders\\' => 35,
             'Modules\\Dashboard\\Database\\Factories\\' => 37,
@@ -652,6 +656,22 @@ class ComposerStaticInitb6b88fe6fefb5891015b39505dfcfc64
         'Modules\\Laporan\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Modules/Laporan/app',
+        ),
+        'Modules\\Kegiatan\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Kegiatan/tests',
+        ),
+        'Modules\\Kegiatan\\Database\\Seeders\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Kegiatan/database/seeders',
+        ),
+        'Modules\\Kegiatan\\Database\\Factories\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Kegiatan/database/factories',
+        ),
+        'Modules\\Kegiatan\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Modules/Kegiatan/app',
         ),
         'Modules\\Dashboard\\Tests\\' => 
         array (
@@ -4541,6 +4561,13 @@ class ComposerStaticInitb6b88fe6fefb5891015b39505dfcfc64
         'Modules\\Dashboard\\Providers\\DashboardServiceProvider' => __DIR__ . '/../..' . '/Modules/Dashboard/app/Providers/DashboardServiceProvider.php',
         'Modules\\Dashboard\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Dashboard/app/Providers/EventServiceProvider.php',
         'Modules\\Dashboard\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Dashboard/app/Providers/RouteServiceProvider.php',
+        'Modules\\Kegiatan\\Database\\Seeders\\KegiatanDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Kegiatan/database/seeders/KegiatanDatabaseSeeder.php',
+        'Modules\\Kegiatan\\Database\\Seeders\\KegiatanSeeder' => __DIR__ . '/../..' . '/Modules/Kegiatan/database/seeders/KegiatanSeeder.php',
+        'Modules\\Kegiatan\\Http\\Controllers\\KegiatanController' => __DIR__ . '/../..' . '/Modules/Kegiatan/app/Http/Controllers/KegiatanController.php',
+        'Modules\\Kegiatan\\Models\\Kegiatan' => __DIR__ . '/../..' . '/Modules/Kegiatan/app/Models/Kegiatan.php',
+        'Modules\\Kegiatan\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Kegiatan/app/Providers/EventServiceProvider.php',
+        'Modules\\Kegiatan\\Providers\\KegiatanServiceProvider' => __DIR__ . '/../..' . '/Modules/Kegiatan/app/Providers/KegiatanServiceProvider.php',
+        'Modules\\Kegiatan\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Kegiatan/app/Providers/RouteServiceProvider.php',
         'Modules\\Laporan\\Database\\Seeders\\LaporanDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Laporan/database/seeders/LaporanDatabaseSeeder.php',
         'Modules\\Laporan\\Exports\\PembayaranExport' => __DIR__ . '/../..' . '/Modules/Laporan/app/Exports/PembayaranExport.php',
         'Modules\\Laporan\\Http\\Controllers\\LaporanController' => __DIR__ . '/../..' . '/Modules/Laporan/app/Http/Controllers/LaporanController.php',
