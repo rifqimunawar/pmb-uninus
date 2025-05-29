@@ -22,7 +22,6 @@
       <!-- Kolom 2: Selamat Datang -->
       <div class="text-center flex-fill">
         <div class="fs-5 fw-semibold text-white">Selamat Datang, {{ Auth::user()->username }}</div>
-        <div class="text-dark mt-1" style="font-size: 0.9rem;">Waktu Shalat {{ $waktu_shalat }}</div>
 
       </div>
 

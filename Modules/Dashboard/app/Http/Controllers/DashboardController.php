@@ -25,14 +25,12 @@ class DashboardController extends Controller
       + $data->sum('bayar_ukt_rpl')
       + $data->sum('bayar_ukt_karyawan');
 
-    $waktu_shalat = $this->waktuShalatSekarang();
-
     return view('dashboard::index', [
       'data' => $data,
       'totalPendaftar' => $totalPendaftar,
       'totalBayarFormulir' => $totalBayarFormulir,
       'totalBayarUKT' => $totalBayarUKT,
-      'waktu_shalat' => $waktu_shalat,
+      // 'waktu_shalat' => $waktu_shalat,
     ]);
   }
 
