@@ -26,17 +26,24 @@ class DashboardController extends Controller
       + $data->sum('bayar_ukt_rpl')
       + $data->sum('bayar_ukt_karyawan');
 
+<<<<<<< HEAD
     $waktu_shalat = $this->waktuShalatSekarang();
 
     $data_kegiatan = Kegiatan::latest()->get();
 
+=======
+>>>>>>> 5d15b36f47ef02e609cf60f8dc11da0e971e2c7e
     return view('dashboard::index', [
       'data' => $data,
       'totalPendaftar' => $totalPendaftar,
       'totalBayarFormulir' => $totalBayarFormulir,
       'totalBayarUKT' => $totalBayarUKT,
+<<<<<<< HEAD
       'waktu_shalat' => $waktu_shalat,
       'data_kegiatan' => $data_kegiatan,
+=======
+      // 'waktu_shalat' => $waktu_shalat,
+>>>>>>> 5d15b36f47ef02e609cf60f8dc11da0e971e2c7e
     ]);
   }
 
