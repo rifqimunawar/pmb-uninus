@@ -12,18 +12,10 @@ return new class extends Migration {
   {
     Schema::create('kegiatans', function (Blueprint $table) {
       $table->id();
-<<<<<<< HEAD
       $table->string('nama_kegiatan')->nullable();
       $table->string('img')->nullable();
       $table->string('desc')->nullable();
       $table->date('tgl_kegiatan')->nullable();
-=======
-      $table->string('nama_kegiatan');
-      $table->string('img')->nullable();
-      $table->string('keterangan')->nullable();
-      $table->date('tanggal_kegiatan')->nullable();
-      $table->date('jumlah_perserta')->nullable();
->>>>>>> 5d15b36f47ef02e609cf60f8dc11da0e971e2c7e
 
       $table->string('created_by')->default('unknown');
       $table->string('updated_by')->default('unknown');
