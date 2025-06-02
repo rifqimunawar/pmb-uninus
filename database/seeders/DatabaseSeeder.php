@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
 
       $this->call(SinkronisasisTableSeeder::class);
         $this->call(LimitApisTableSeeder::class);
+        $this->call(KegiatansTableSeeder::class);
     }
 }

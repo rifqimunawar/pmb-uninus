@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
+use Modules\Kegiatan\Models\Kegiatan;
 use Modules\Sinkronisasi\Models\Sinkronisasi;
 
 class DashboardController extends Controller
@@ -27,12 +28,15 @@ class DashboardController extends Controller
 
     $waktu_shalat = $this->waktuShalatSekarang();
 
+    $data_kegiatan = Kegiatan::latest()->get();
+
     return view('dashboard::index', [
       'data' => $data,
       'totalPendaftar' => $totalPendaftar,
       'totalBayarFormulir' => $totalBayarFormulir,
       'totalBayarUKT' => $totalBayarUKT,
       'waktu_shalat' => $waktu_shalat,
+      'data_kegiatan' => $data_kegiatan,
     ]);
   }
 

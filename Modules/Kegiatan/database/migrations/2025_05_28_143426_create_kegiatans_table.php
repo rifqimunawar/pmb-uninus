@@ -12,7 +12,10 @@ return new class extends Migration {
   {
     Schema::create('kegiatans', function (Blueprint $table) {
       $table->id();
-      $table->string('nama_kegiatan');
+      $table->string('nama_kegiatan')->nullable();
+      $table->string('img')->nullable();
+      $table->string('desc')->nullable();
+      $table->date('tgl_kegiatan')->nullable();
 
       $table->string('created_by')->default('unknown');
       $table->string('updated_by')->default('unknown');

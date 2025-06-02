@@ -167,10 +167,6 @@ class ComposerStaticInitb6b88fe6fefb5891015b39505dfcfc64
             'Modules\\Settings\\Database\\Seeders\\' => 34,
             'Modules\\Settings\\Database\\Factories\\' => 36,
             'Modules\\Settings\\' => 17,
-            'Modules\\ReportUmum\\Tests\\' => 25,
-            'Modules\\ReportUmum\\Database\\Seeders\\' => 36,
-            'Modules\\ReportUmum\\Database\\Factories\\' => 38,
-            'Modules\\ReportUmum\\' => 19,
             'Modules\\Profile\\Tests\\' => 22,
             'Modules\\Profile\\Database\\Seeders\\' => 33,
             'Modules\\Profile\\Database\\Factories\\' => 35,
@@ -608,22 +604,6 @@ class ComposerStaticInitb6b88fe6fefb5891015b39505dfcfc64
         'Modules\\Settings\\' => 
         array (
             0 => __DIR__ . '/../..' . '/Modules/Settings/app',
-        ),
-        'Modules\\ReportUmum\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/ReportUmum/tests',
-        ),
-        'Modules\\ReportUmum\\Database\\Seeders\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/ReportUmum/database/seeders',
-        ),
-        'Modules\\ReportUmum\\Database\\Factories\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/ReportUmum/database/factories',
-        ),
-        'Modules\\ReportUmum\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/Modules/ReportUmum/app',
         ),
         'Modules\\Profile\\Tests\\' => 
         array (
@@ -1178,6 +1158,7 @@ class ComposerStaticInitb6b88fe6fefb5891015b39505dfcfc64
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Factories\\WargaFactory' => __DIR__ . '/../..' . '/database/factories/WargaFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\KegiatansTableSeeder' => __DIR__ . '/../..' . '/database/seeders/KegiatansTableSeeder.php',
         'Database\\Seeders\\LimitApisTableSeeder' => __DIR__ . '/../..' . '/database/seeders/LimitApisTableSeeder.php',
         'Database\\Seeders\\MenusTableSeeder' => __DIR__ . '/../..' . '/database/seeders/MenusTableSeeder.php',
         'Database\\Seeders\\RoleMenuTableSeeder' => __DIR__ . '/../..' . '/database/seeders/RoleMenuTableSeeder.php',
@@ -4579,13 +4560,6 @@ class ComposerStaticInitb6b88fe6fefb5891015b39505dfcfc64
         'Modules\\Profile\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/Profile/app/Providers/EventServiceProvider.php',
         'Modules\\Profile\\Providers\\ProfileServiceProvider' => __DIR__ . '/../..' . '/Modules/Profile/app/Providers/ProfileServiceProvider.php',
         'Modules\\Profile\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/Profile/app/Providers/RouteServiceProvider.php',
-        'Modules\\ReportUmum\\Database\\Seeders\\ReportUmumDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/ReportUmum/database/seeders/ReportUmumDatabaseSeeder.php',
-        'Modules\\ReportUmum\\Database\\Seeders\\ReportUmumSeeder' => __DIR__ . '/../..' . '/Modules/ReportUmum/database/seeders/ReportUmumSeeder.php',
-        'Modules\\ReportUmum\\Http\\Controllers\\ReportUmumController' => __DIR__ . '/../..' . '/Modules/ReportUmum/app/Http/Controllers/ReportUmumController.php',
-        'Modules\\ReportUmum\\Models\\ReportUmum' => __DIR__ . '/../..' . '/Modules/ReportUmum/app/Models/ReportUmum.php',
-        'Modules\\ReportUmum\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/Modules/ReportUmum/app/Providers/EventServiceProvider.php',
-        'Modules\\ReportUmum\\Providers\\ReportUmumServiceProvider' => __DIR__ . '/../..' . '/Modules/ReportUmum/app/Providers/ReportUmumServiceProvider.php',
-        'Modules\\ReportUmum\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/Modules/ReportUmum/app/Providers/RouteServiceProvider.php',
         'Modules\\Settings\\Exports\\RolesExport' => __DIR__ . '/../..' . '/Modules/Settings/app/Exports/RolesExport.php',
         'Modules\\Settings\\Http\\Controllers\\MenuController' => __DIR__ . '/../..' . '/Modules/Settings/app/Http/Controllers/MenuController.php',
         'Modules\\Settings\\Http\\Controllers\\RolesController' => __DIR__ . '/../..' . '/Modules/Settings/app/Http/Controllers/RolesController.php',

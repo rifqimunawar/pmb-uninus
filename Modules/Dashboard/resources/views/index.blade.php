@@ -2,6 +2,10 @@
 @php
   use App\Helpers\Fungsi;
   use App\Helpers\GetSettings;
+  use Carbon\Carbon;
+  Carbon::setLocale('id');
+  $now = Carbon::now();
+  $limitDate = $now->copy()->addDays(5);
 @endphp
 @section('content')
   <!-- BEGIN row -->
@@ -42,35 +46,37 @@
     <!-- Info Kegiatan -->
     <div class="col-12 col-md-4">
       <div class="card h-100 bg-gray-800 text-white">
-        <div class="card-body d-flex flex-column">
-          <h5 class="mb-3">Info Kegiatan</h5>
-          <div class="text-muted small mb-2">Tanggal: <strong>26 Mei 2025</strong></div>
+        <div id="carouselKegiatanUtama" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+          <div class="carousel-inner">
+            @foreach ($data_kegiatan as $index => $item)
+              <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                <div class="card-body d-flex flex-column">
+                  <img src="{{ asset('img/' . $item->img) }}" class="d-block w-100 rounded mb-3"
+                    alt="Gambar {{ $item->nama_kegiatan }}" style="object-fit: cover; height: 200px;">
 
-          <!-- Carousel Start -->
-          <div id="carouselKegiatan" class="carousel slide mb-3" data-bs-ride="carousel">
-            <div class="carousel-inner rounded">
-              <div class="carousel-item active">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Joko_Widodo_2014_official_portrait.jpg/250px-Joko_Widodo_2014_official_portrait.jpg"
-                  class="d-block w-100" alt="Slide 1" style="object-fit: cover; height: 150px;">
+                  <h5 class="mb-2">Info Kegiatan</h5>
+                  <div class="text-white small mb-1">
+                    Tanggal: <strong>{{ Fungsi::format_tgl($item->tgl_kegiatan) }}</strong>
+                  </div>
+                  <h6 class="text-white">{{ $item->nama_kegiatan }}</h6>
+                  <p class="text-white small">{{ Str::limit($item->desc, 100) }}</p>
+                </div>
               </div>
-              <div class="carousel-item">
-                <img src="https://picsum.photos/id/1011/600/300" class="d-block w-100" alt="Slide 2"
-                  style="object-fit: cover; height: 150px;">
-              </div>
-              <div class="carousel-item">
-                <img src="https://picsum.photos/id/1015/600/300" class="d-block w-100" alt="Slide 3"
-                  style="object-fit: cover; height: 150px;">
-              </div>
-            </div>
+            @endforeach
           </div>
-          <!-- Carousel End -->
 
-          <h6 class="text-white">Judul Kegiatan</h6>
-          <p class="text-muted small mt-auto">
-            Keterangan singkat mengenai kegiatan yang sedang atau akan berlangsung.
-          </p>
+          <!-- Navigasi Manual -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselKegiatanUtama"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselKegiatanUtama"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </button>
         </div>
+
+
       </div>
     </div>
 
@@ -109,18 +115,27 @@
         <div class="card-body d-flex flex-column">
           <h5 class="mb-3">Rencana Kegiatan</h5>
           <ul class="list-unstyled mb-0 flex-grow-1">
-            <li class="mb-3">
-              <strong>Seminar Pendidikan</strong><br />
-              <span class="text-muted small">Minggu kedua Juni promosi kampus.</span>
-            </li>
-            <li class="mb-3">
-              <strong>Pelatihan Panitia PMB</strong><br />
-              <span class="text-muted small">Untuk peningkatan koordinasi panitia.</span>
-            </li>
-            <li>
-              <strong>Open House Kampus</strong><br />
-              <span class="text-muted small">Bertemu langsung dengan calon mahasiswa dan orang tua.</span>
-            </li>
+            @foreach ($data_kegiatan as $item)
+              @php
+                $tglKegiatan = Carbon::parse($item->tgl_kegiatan);
+              @endphp
+
+              @if ($tglKegiatan->isAfter($now) && $tglKegiatan->lessThanOrEqualTo($limitDate))
+                <li class="mb-3">
+                  <strong>{{ $item->nama_kegiatan }}</strong><br />
+                  <span class="text-white small">
+                    {{ $tglKegiatan->translatedFormat('l, d F Y') }} — {{ Str::limit($item->desc, 60) }}
+                  </span>
+                </li>
+              @endif
+            @endforeach
+
+            {{-- Jika tidak ada kegiatan dalam 5 hari ke depan --}}
+            @if (
+                $data_kegiatan->filter(fn($item) => Carbon::parse($item->tgl_kegiatan)->isAfter($now) &&
+                            Carbon::parse($item->tgl_kegiatan)->lessThanOrEqualTo($limitDate))->isEmpty())
+              <li class="text-white small">Tidak ada kegiatan dalam 5 hari ke depan.</li>
+            @endif
           </ul>
           <div class="mt-auto"></div> <!-- Spacer -->
         </div>

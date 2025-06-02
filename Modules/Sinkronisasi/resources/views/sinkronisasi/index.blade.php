@@ -35,12 +35,12 @@
     <div
       style="display: flex; justify-content: center; align-items: center; margin: 10px auto 15px auto; width: max-content;">
       <p>
-        Sinkronisasi data dapat dilakukan maksimal <strong>300 kali</strong> dalam satu bulan. <br> Untuk bulan ini, fitur
-        ini telah digunakan sebanyak <strong>{{ $data->usage_count }}</strong> kali.
+        Sinkronisasi data dapat dilakukan maksimal <strong>500 kali</strong>. <br> dan telah digunakan sebanyak
+        <strong>{{ $data->usage_count }}</strong> kali.
         <br> Terakhir diperbarui oleh
         <strong>{{ $data->users->username }}</strong> pada
         <strong>{{ Fungsi::format_tgl($data->updated_at) }}</strong>.<br>
-        <i>Untuk sementara tombol tidak difungsikan
+        {{-- <i>Untuk sementara tombol tidak difungsikan --}}
       </p>
     </div>
 
