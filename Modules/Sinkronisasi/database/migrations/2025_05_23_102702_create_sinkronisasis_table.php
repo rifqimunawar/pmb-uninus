@@ -26,6 +26,8 @@ return new class extends Migration {
       $table->integer('bayar_ukt_reguler')->nullable();
       $table->integer('bayar_ukt_rpl')->nullable();
       $table->integer('bayar_ukt_karyawan')->nullable();
+      $table->integer('angkatan')->nullable();
+      $table->string('jenjang')->nullable();
 
       $table->string('created_by')->default('unknown');
       $table->string('updated_by')->default('unknown');

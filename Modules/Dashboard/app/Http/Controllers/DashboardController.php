@@ -45,6 +45,19 @@ class DashboardController extends Controller
     $data = Sinkronisasi::all();
     return response()->json($data);
   }
+  public function get_data_tahun($nama_tahun)
+  {
+    if (strtoupper($nama_tahun) === '2024-2025') {
+      $data = Sinkronisasi::where('angkatan', '2024-2025')->get();
+    } elseif (strtoupper($nama_tahun) === '2025-2026') {
+      $data = Sinkronisasi::where('angkatan', '2025-2026')->get();
+    } else {
+      $data = Sinkronisasi::all();
+    }
+
+    return response()->json($data);
+  }
+
   public function get_data_jenjang($nama_jenjang)
   {
     if (strtoupper($nama_jenjang) === 'PASCASARJANA') {
@@ -64,7 +77,6 @@ class DashboardController extends Controller
       ->get();
     return response()->json($data);
   }
-
 
   public function get_data_prodi($nama_prodi)
   {

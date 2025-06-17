@@ -148,6 +148,12 @@
   <!-- BEGIN daterange-filter -->
   <div class="d-flex align-items-center mb-3 gap-2 flex-wrap">
 
+    <select id="tahun-dropdown" class="form-select form-select-sm w-auto">
+      <option value="">Semua Tahun</option>
+      <option value="2024-2025">2024-2025</option>
+      <option value="2025-2026">2025-2026</option>
+    </select>
+
     <select id="jenjang-dropdown" class="form-select form-select-sm w-auto">
       <option value="">Semua Jenjang</option>
       <option value="SARJANA">SARJANA</option>
@@ -457,7 +463,7 @@
       <div class="card border-0 mb-3 bg-gray-800 text-white">
         <div class="card-body">
           <div class="mb-2 text-gray-500">
-            <b>SESSION BY LOCATION</b>
+            <b>DATA PENDAFTAR</b>
             <span class="ms-2"><i class="fa fa-info-circle" data-bs-toggle="popover" data-bs-trigger="hover"
                 data-bs-title="Total sales" data-bs-placement="top"
                 data-bs-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i></span>
@@ -502,6 +508,7 @@
   <!-- ================== END page-js ================== -->
 
   <script>
+    const tahunDropdown = document.getElementById('tahun-dropdown');
     const jenjangDropdown = document.getElementById('jenjang-dropdown');
     const fakultasDropdown = document.getElementById('fakultas-dropdown');
     const prodiDropdown = document.getElementById('prodi-dropdown');
@@ -519,16 +526,26 @@
     const uktKaryawan = document.querySelector('[data-value="data-ukt-karyawan"]');
     const updateNim = document.querySelector('[data-value="data-nim"]');
 
-    function populateDropdown(dropdown, data, defaultOptionText = '') {
-      dropdown.innerHTML = `<option value="">${defaultOptionText}</option>`;
-      const uniqueData = [...new Set(data)];
-      uniqueData.forEach(item => {
+    let pieChartInstance = null;
+    let allData = [];
+
+    function populateDropdown(dropdown, items, defaultLabel = 'Semua') {
+      dropdown.innerHTML = '';
+
+      const defaultOption = document.createElement('option');
+      defaultOption.value = '';
+      defaultOption.textContent = defaultLabel;
+      dropdown.appendChild(defaultOption);
+
+      const uniqueItems = [...new Set(items)].sort();
+      uniqueItems.forEach(item => {
         const option = document.createElement('option');
         option.value = item;
         option.textContent = item;
         dropdown.appendChild(option);
       });
     }
+
 
     function updateDateTime() {
       const waktu = new Date();
@@ -859,29 +876,63 @@
       chart.render();
     }
 
-    function updatePieChart(data, jenjang, groupBy = 'prodi') {
-      const grouped = {};
-      data.forEach(item => {
-        // const key = groupBy === 'fakultas' ? item.fakultas : item.prodi;
-        const key = item.prodi;
-        if (!grouped[key]) {
-          grouped[key] = 0;
-        }
-        grouped[key] += Number(item.pendaftar || 0);
-      });
+    function updatePieChart(data, filters) {
+      let groupBy;
 
-      const fullLabels = Object.keys(grouped);
-      const labels = fullLabels.map(label => {
-        if (label.length > 10) {
-          return label.split(' ')
-            .map(word => word[0])
-            .join('')
-            .toUpperCase();
-        }
-        return label;
-      });
+      const angkatanSet = new Set(data.map(d => d.angkatan));
+      const jenjangSet = new Set(data.map(d => d.jenjang));
+      const fakultasSet = new Set(data.map(d => d.fakultas));
+      const prodiSet = new Set(data.map(d => d.prodi));
 
-      const series = fullLabels.map(label => grouped[label]);
+      // Deteksi level filter berdasarkan pilihan user
+      const isFilteredByTahun = filters.tahun && filters.tahun !== 'Semua';
+      const isFilteredByJenjang = filters.jenjang && filters.jenjang !== 'Semua';
+      const isFilteredByFakultas = filters.fakultas && filters.fakultas !== 'Semua Fakultas';
+      const isFilteredByProdi = filters.prodi && filters.prodi !== 'Semua Prodi';
+
+      if (!isFilteredByTahun) {
+        groupBy = 'angkatan';
+      } else if (!isFilteredByJenjang) {
+        groupBy = 'jenjang';
+      } else if (!isFilteredByFakultas) {
+        groupBy = 'fakultas';
+      } else if (!isFilteredByProdi) {
+        groupBy = 'prodi';
+      } else {
+        groupBy = 'summary'; // hanya satu prodi tersisa
+      }
+
+      let labels = [];
+      let series = [];
+
+      if (groupBy === 'summary') {
+        const total = (key) => data.reduce((acc, item) => acc + Number(item[key] || 0), 0);
+
+        labels = ['Pendaftar', 'Formulir', 'UKT', 'NIM'];
+        series = [
+          total('pendaftar'),
+          total('bayar_form_reguler') + total('bayar_form_rpl') + total('bayar_form_karyawan') + total(
+            'bayar_form_kipk'),
+          total('bayar_ukt_reguler') + total('bayar_ukt_rpl') + total('bayar_ukt_karyawan'),
+          total('nim')
+        ];
+      } else {
+        const grouped = {};
+        data.forEach(item => {
+          const key = item[groupBy];
+          if (!grouped[key]) grouped[key] = 0;
+          grouped[key] += Number(item.pendaftar || 0);
+        });
+
+        const fullLabels = Object.keys(grouped);
+        labels = fullLabels.map(label => {
+          if (label.length > 10) {
+            return label.split(' ').map(word => word[0]).join('').toUpperCase();
+          }
+          return label;
+        });
+        series = fullLabels.map(label => grouped[label]);
+      }
 
       const options = {
         chart: {
@@ -890,9 +941,6 @@
         },
         labels: labels,
         series: series,
-        // title: {
-        //   text: `Proporsi Pendaftar berdasarkan ${groupBy === 'fakultas' ? 'Fakultas' : 'Prodi'}`
-        // },
         legend: {
           position: 'bottom',
           horizontalAlign: 'center',
@@ -910,204 +958,116 @@
             series,
             seriesIndex
           }) {
-            const fullLabel = fullLabels[seriesIndex]; // pakai label asli
             const value = series[seriesIndex].toLocaleString();
+            const fullLabel = labels[seriesIndex];
             return `<strong>${fullLabel}</strong>: ${value}`;
           }
         }
       };
 
       const chartContainer = document.querySelector('#apex-pie-chart');
+
+      if (pieChartInstance) {
+        pieChartInstance.destroy();
+        pieChartInstance = null;
+      }
+
       chartContainer.innerHTML = '';
-      const chart = new ApexCharts(chartContainer, options);
-      chart.render();
+      pieChartInstance = new ApexCharts(chartContainer, options);
+      pieChartInstance.render();
     }
+
 
     // ========================= Fetch Data Start
     function fetchAllData() {
       fetch('/ajx_get/get_data_all')
         .then(res => res.json())
         .then(data => {
-          const fakultasList = data.map(item => item.fakultas).filter(f => f && f !== 'PASCASARJANA');
-          const prodiList = data.map(item => item.prodi).filter(Boolean);
-          populateDropdown(fakultasDropdown, fakultasList, 'Semua Fakultas');
-          populateDropdown(prodiDropdown, prodiList, 'Semua Prodi');
-          updateTotalPendaftar(data);
-          updateTotalPelayananOnline(data);
-          updateTotalPelayananOffline(data);
-          updateTotalBayarFormulir(data);
-          updateTotalBayarUkt(data);
-          updateTotalFormReguler(data);
-          updateTotalFormRpl(data);
-          updateTotalFormKaryawan(data);
-          updateTotalFormKipk(data);
-          updateTotalUktReguler(data);
-          updateTotalUktRpl(data);
-          updateTotalUktKaryawan(data);
-          updateTotalNim(data);
+          allData = data;
 
-          const jenjang = jenjangDropdown.value || 'SARJANA';
-          updateChart(data, jenjang);
-          updateChartFormulir(data, jenjang);
-          updatePieChart(data, jenjang, 'prodi');
-          updatePieChart(data, jenjang, 'fakultas');
-
+          applyAllFilters();
         });
     }
 
-    function fetchFakultas(jenjang) {
-      fetch(`/ajx_get/get_data_jenjang/${jenjang}`)
-        .then(res => res.json())
-        .then(data => {
-          const fakultasList = data.map(item => item.fakultas).filter(f => f && f !== 'PASCASARJANA');
-          populateDropdown(fakultasDropdown, fakultasList, 'Semua Fakultas');
-          updateTotalPendaftar(data);
-          updateTotalPelayananOnline(data);
-          updateTotalPelayananOffline(data);
-          updateTotalBayarFormulir(data);
-          updateTotalBayarUkt(data);
-          updateTotalFormReguler(data);
-          updateTotalFormRpl(data);
-          updateTotalFormKaryawan(data);
-          updateTotalFormKipk(data);
-          updateTotalUktReguler(data);
-          updateTotalUktRpl(data);
-          updateTotalUktKaryawan(data);
-          updateTotalNim(data);
+    function applyAllFilters() {
+      const tahun = tahunDropdown.value;
+      const jenjang = jenjangDropdown.value;
+      const fakultas = fakultasDropdown.value;
+      const prodi = prodiDropdown.value;
 
-          const jenjang = jenjangDropdown.value || 'SARJANA';
-          updateChart(data, jenjang);
-          updateChartFormulir(data, jenjang);
-          updatePieChart(data, jenjang, 'prodi');
-          updatePieChart(data, jenjang, 'fakultas');
-        });
-    }
+      let filteredData = allData;
 
-    function fetchProdi(fakultas) {
-      fetch(`/ajx_get/get_data_fakultas/${fakultas}`)
-        .then(res => res.json())
-        .then(data => {
-          const prodiList = data.map(item => item.prodi).filter(Boolean);
-          populateDropdown(prodiDropdown, prodiList, 'Semua Prodi');
-          updateTotalPendaftar(data);
-          updateTotalPelayananOnline(data);
-          updateTotalPelayananOffline(data);
-          updateTotalBayarFormulir(data);
-          updateTotalBayarUkt(data);
-          updateTotalFormReguler(data);
-          updateTotalFormRpl(data);
-          updateTotalFormKaryawan(data);
-          updateTotalFormKipk(data);
-          updateTotalUktReguler(data);
-          updateTotalUktRpl(data);
-          updateTotalUktKaryawan(data);
-          updateTotalNim(data);
+      if (tahun && tahun !== 'Semua') {
+        filteredData = filteredData.filter(item => item.angkatan === tahun);
+      }
 
-          const jenjang = jenjangDropdown.value || 'SARJANA';
-          updateChart(data, jenjang);
-          updateChartFormulir(data, jenjang);
-          updatePieChart(data, jenjang, 'prodi');
-          updatePieChart(data, jenjang, 'fakultas');
-        });
-    }
+      if (jenjang && jenjang !== 'Semua') {
+        filteredData = filteredData.filter(item => item.jenjang === jenjang);
+      }
 
-    function fetchByJenjang(jenjang) {
-      fetch(`/ajx_get/get_data_jenjang/${jenjang}`)
-        .then(res => res.json())
-        .then(data => {
-          const prodiList = data.map(item => item.prodi).filter(Boolean);
-          populateDropdown(prodiDropdown, prodiList, 'Semua Prodi');
-          updateTotalPendaftar(data);
-          updateTotalPelayananOnline(data);
-          updateTotalPelayananOffline(data);
-          updateTotalBayarFormulir(data);
-          updateTotalBayarUkt(data);
-          updateTotalFormReguler(data);
-          updateTotalFormRpl(data);
-          updateTotalFormKaryawan(data);
-          updateTotalFormKipk(data);
-          updateTotalUktReguler(data);
-          updateTotalUktRpl(data);
-          updateTotalUktKaryawan(data);
-          updateTotalNim(data);
+      if (fakultas && fakultas !== 'Semua Fakultas') {
+        filteredData = filteredData.filter(item => item.fakultas === fakultas);
+      }
 
-          const jenjang = jenjangDropdown.value || 'SARJANA';
-          updateChart(data, jenjang);
-          updateChartFormulir(data, jenjang);
-          updatePieChart(data, jenjang, 'prodi');
-          updatePieChart(data, jenjang, 'fakultas');
-        });
-    }
+      if (prodi && prodi !== 'Semua Prodi') {
+        filteredData = filteredData.filter(item => item.prodi === prodi);
+      }
 
-    function fetchByProdi(prodi) {
-      fetch(`/ajx_get/get_data_prodi/${prodi}`)
-        .then(res => res.json())
-        .then(data => {
-          updateTotalPendaftar(data);
-          updateTotalPelayananOnline(data);
-          updateTotalPelayananOffline(data);
-          updateTotalBayarFormulir(data);
-          updateTotalBayarUkt(data);
-          updateTotalFormReguler(data);
-          updateTotalFormRpl(data);
-          updateTotalFormKaryawan(data);
-          updateTotalFormKipk(data);
-          updateTotalUktReguler(data);
-          updateTotalUktRpl(data);
-          updateTotalUktKaryawan(data);
-          updateTotalNim(data);
 
-          const jenjang = jenjangDropdown.value || 'SARJANA';
-          updateChart(data, jenjang);
-          updateChartFormulir(data, jenjang);
-          updatePieChart(data, jenjang, 'prodi');
-          updatePieChart(data, jenjang, 'fakultas');
-        });
+      const fakultasList = [...new Set(filteredData.map(item => item.fakultas).filter(f => f && f !== 'PASCASARJANA'))];
+      const prodiList = [...new Set(filteredData.map(item => item.prodi).filter(Boolean))];
+
+
+      // Tentukan label default secara dinamis, misalnya berdasarkan jumlah data
+      const defaultFakultasLabel = fakultasList.length > 1 ? 'Semua Fakultas' : fakultasList[0] || '-';
+      const defaultProdiLabel = prodiList.length > 1 ? 'Semua Prodi' : prodiList[0] || '-';
+
+      populateDropdown(fakultasDropdown, fakultasList, defaultFakultasLabel);
+      populateDropdown(prodiDropdown, prodiList, defaultProdiLabel);
+
+
+      // update semua tampilan
+      updateTotalPendaftar(filteredData);
+      updateTotalPelayananOnline(filteredData);
+      updateTotalPelayananOffline(filteredData);
+      updateTotalBayarFormulir(filteredData);
+      updateTotalBayarUkt(filteredData);
+      updateTotalFormReguler(filteredData);
+      updateTotalFormRpl(filteredData);
+      updateTotalFormKaryawan(filteredData);
+      updateTotalFormKipk(filteredData);
+      updateTotalUktReguler(filteredData);
+      updateTotalUktRpl(filteredData);
+      updateTotalUktKaryawan(filteredData);
+      updateTotalNim(filteredData);
+
+      updateChart(filteredData, jenjang);
+      updateChartFormulir(filteredData, jenjang);
+      updatePieChart(filteredData, {
+        tahun,
+        jenjang,
+        fakultas,
+        prodi
+      });
+
     }
     // ========================= Fetch Data End
 
-    jenjangDropdown.addEventListener('change', function() {
-      const jenjang = this.value;
-      if (jenjang === 'SARJANA') {
-        fakultasDropdown.style.display = 'inline-block';
-        prodiDropdown.style.display = 'inline-block';
-        fetchFakultas(jenjang);
-      } else if (jenjang === 'PASCASARJANA') {
+
+    // ========================= Event Listerner start
+    tahunDropdown.addEventListener('change', applyAllFilters);
+    jenjangDropdown.addEventListener('change', () => {
+      if (jenjangDropdown.value === 'PASCASARJANA') {
         fakultasDropdown.style.display = 'none';
-        prodiDropdown.style.display = 'inline-block';
-        fetchByJenjang('PASCASARJANA');
       } else {
         fakultasDropdown.style.display = 'inline-block';
-        prodiDropdown.style.display = 'inline-block';
-        fetchAllData();
       }
+
+      applyAllFilters();
     });
 
-    fakultasDropdown.addEventListener('change', function() {
-      const fakultas = this.value;
-      if (fakultas) {
-        fetchProdi(fakultas);
-      } else {
-        fetchAllData();
-      }
-    });
-
-    prodiDropdown.addEventListener('change', function() {
-      const prodi = this.value;
-      if (prodi) {
-        fetchByProdi(prodi);
-      } else {
-        const jenjang = jenjangDropdown.value;
-        const fakultas = fakultasDropdown.value;
-        if (jenjang) {
-          fetchByJenjang(jenjang);
-        } else if (fakultas) {
-          fetchProdi(fakultas);
-        } else {
-          fetchAllData();
-        }
-      }
-    });
+    fakultasDropdown.addEventListener('change', applyAllFilters);
+    prodiDropdown.addEventListener('change', applyAllFilters);
 
     document.addEventListener('DOMContentLoaded', () => {
       fakultasDropdown.style.display = 'inline-block';
@@ -1115,6 +1075,7 @@
       fetchAllData();
     });
 
+    // ========================= Event Listerner end
     // return chart start
     var ChartApex = function() {
       "use strict";

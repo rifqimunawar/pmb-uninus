@@ -11,6 +11,7 @@
 <head>
   <meta charset="utf-8" />
   <title>{{ $getWebName }} | Login</title>
+  <link rel="icon" type="image/x-icon" href="{{ $getLogo }}">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
   <meta content="" name="description" />
   <meta content="" name="author" />
