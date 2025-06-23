@@ -26,7 +26,7 @@
       <!-- Kolom 2: Selamat Datang -->
       <div class="text-center flex-fill">
         <div class="fs-5 fw-semibold text-white">Selamat Datang, {{ Auth::user()->username }}</div>
-        <div class="text-dark mt-1" style="font-size: 0.9rem;">Waktu Shalat {{ $waktu_shalat }}</div>
+        
 
       </div>
 
@@ -55,11 +55,20 @@
                     alt="Gambar {{ $item->nama_kegiatan }}" style="object-fit: cover; height: 200px;">
 
                   <h5 class="mb-2">Info Kegiatan</h5>
-                  <div class="text-white small mb-1">
-                    Tanggal: <strong>{{ Fungsi::format_tgl($item->tgl_kegiatan) }}</strong>
+                  <div class="row text-white small gx-2">
+                    <div class="col-4">
+                      <strong>Tanggal:</strong><br>
+                      {{ Fungsi::format_tgl($item->tgl_kegiatan) }}
+                    </div>
+                    <div class="col-4">
+                      <strong>Nama:</strong><br>
+                      {{ $item->nama_kegiatan }}
+                    </div>
+                    <div class="col-4">
+                      <strong>Deskripsi:</strong><br>
+                      {{ Str::limit($item->desc, 60) }}
+                    </div>
                   </div>
-                  <h6 class="text-white">{{ $item->nama_kegiatan }}</h6>
-                  <p class="text-white small">{{ Str::limit($item->desc, 100) }}</p>
                 </div>
               </div>
             @endforeach
@@ -82,28 +91,36 @@
 
 
     <!-- Report Umum -->
-    <div class="col-4 col-md-4">
+    <!-- ✅ Perubahan 1: ubah col agar responsif -->
+    <div class="col-12 col-md-4">
       <div class="card h-100 bg-gray-800 text-white">
-        <div class="card-body d-flex flex-column justify-content-between">
+        <div class="card-body d-flex flex-column justify-content-between h-100">
           <div>
             <h5 class="mb-2">Report Umum</h5>
-            <p class="text-muted mb-3">Data CAMABA 2025-2026</p>
+            <p class="text-muted mb-4">Data CAMABA 2025-2026</p>
           </div>
-          <div class="mt-auto">
-            <div class="row text-center">
-              <div class="col-4 border-end">
-                <div class="fw-bold mb-1">Total Pendaftar</div>
-                <div class="text-info fs-5">{{ $totalPendaftar }}</div>
-              </div>
-              <div class="col-4 border-end">
-                <div class="fw-bold mb-1">Total Bayar Formulir</div>
-                <div class="text-success fs-5">{{ $totalBayarFormulir }}</div>
-              </div>
-              <div class="col-4">
-                <div class="fw-bold mb-1">Total Bayar UKT</div>
-                <div class="text-warning fs-5">{{ $totalBayarUKT }}</div>
-              </div>
+
+          <div class="row text-center gy-3">
+
+            <div class="col-6 d-flex flex-column justify-content-center">
+              <div class="fw-bold mb-1">Total Pendaftar</div>
+              <div class="text-info display-6 fw-semibold">{{ $totalPendaftar }}</div> 
             </div>
+
+            <div class="col-6 d-flex flex-column justify-content-center">
+              <div class="fw-bold mb-1">Bayar Formulir</div>
+              <div class="text-success display-6 fw-semibold">{{ $totalBayarFormulir }}</div>
+            </div>
+
+            <div class="col-6 d-flex flex-column justify-content-center">
+              <div class="fw-bold mb-1">Bayar UKT</div>
+              <div class="text-warning display-6 fw-semibold">{{ $totalBayarUKT }}</div>
+            </div>
+
+            <div class="col-6 d-flex flex-column justify-content-center">
+              <div class="fw-bold mb-1">Peminat</div>
+            </div>
+
           </div>
         </div>
       </div>
