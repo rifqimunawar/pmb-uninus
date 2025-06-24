@@ -26,7 +26,7 @@
       <!-- Kolom 2: Selamat Datang -->
       <div class="text-center flex-fill">
         <div class="fs-5 fw-semibold text-white">Selamat Datang, {{ Auth::user()->username }}</div>
-        
+
 
       </div>
 
@@ -104,7 +104,7 @@
 
             <div class="col-6 d-flex flex-column justify-content-center">
               <div class="fw-bold mb-1">Total Pendaftar</div>
-              <div class="text-info display-6 fw-semibold">{{ $totalPendaftar }}</div> 
+              <div class="text-info display-6 fw-semibold">{{ $totalPendaftar }}</div>
             </div>
 
             <div class="col-6 d-flex flex-column justify-content-center">
@@ -440,7 +440,7 @@
     <div class="col-xl-8 col-lg-6">
       <!-- BEGIN card -->
       <div class="card border-0 mb-3 bg-gray-800 text-white">
-        <div class="card-body">
+        <div class="card-body" style="background-color: #ffffff;">
           <div class="mb-3 text-gray-500 "><b>CAMABA ANALYTICS</b> <span class="ms-2"><i class="fa fa-info-circle"
                 data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="Top products with units sold"
                 data-bs-placement="top"
@@ -467,7 +467,7 @@
             </div>
           </div> --}}
         </div>
-        <div class="panel-body p-0 pe-10px ps-10px">
+        <div class="panel-body p-0 pe-10px ps-10px" style="background-color: #ffffff;">
           <div id="apex-column-chart"></div>
         </div>
       </div>
@@ -478,14 +478,14 @@
     <div class="col-xl-4 col-lg-6">
       <!-- BEGIN card -->
       <div class="card border-0 mb-3 bg-gray-800 text-white">
-        <div class="card-body">
+        <div class="card-body" style="background-color: #ffffff;">
           <div class="mb-2 text-gray-500">
             <b>DATA PENDAFTAR</b>
             <span class="ms-2"><i class="fa fa-info-circle" data-bs-toggle="popover" data-bs-trigger="hover"
                 data-bs-title="Total sales" data-bs-placement="top"
                 data-bs-content="Net sales (gross sales minus discounts and returns) plus taxes and shipping. Includes orders from all sales channels."></i></span>
           </div>
-          <div id="apex-pie-chart" class="mb-2" style="height: 200px"></div>
+          <div id="apex-pie-chart" class="mb-2" style="height: 200px; background-color: #ffffff"></div>
         </div>
       </div>
       <!-- END card -->
@@ -494,8 +494,8 @@
   </div>
 
   <div class="col-xl-12 col-lg-12">
-    <div class="card border-0 mb-3 bg-gray-800 text-white">
-      <div class="card-body">
+    <div class="card border-0 mb-3  text-white">
+      <div class="card-body" style="background-color: #ffffff;">
         <div class="mb-3 text-gray-500 "><b>CAMABA ANALYTICS</b> <span class="ms-2"><i class="fa fa-info-circle"
               data-bs-toggle="popover" data-bs-trigger="hover" data-bs-title="Top products with units sold"
               data-bs-placement="top"
@@ -503,7 +503,7 @@
               data-original-title="" title=""></i></span></div>
       </div>
       <div class="panel-body p-0 pe-10px ps-10px">
-        <div id="chartBayarFormulir"></div>
+        <div id="chartBayarFormulir" style="background-color: #ffffff;"></div>
       </div>
     </div>
   </div>
